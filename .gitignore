@@ -1,0 +1,8 @@
+*.xlsx
+data/
+weigts/*.pt
+*.pt
+result_save.txt
+runs/detect/
+runs/obb/
+result_save/
