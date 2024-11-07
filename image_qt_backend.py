@@ -1,191 +1,132 @@
-#organized code
-from scipy.stats import pearsonr
-from ultralytics import YOLO
 import os
-from glob import glob
-import numpy as np
-from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
-import matplotlib.pyplot as plt
-import pandas as pd
-from sklearn.linear_model import LinearRegression
-from utils.ultralytics_custom_utils import Final_pipeline_yolov8
-import warnings
 import logging
+import warnings
+import numpy as np
 import pandas as pd
-import openpyxl
-import xlsxwriter
+from glob import glob
+from ultralytics import YOLO
+from scipy.stats import pearsonr
+
+from utils.metric_utils import *
+from utils.regression_model import load_regression_model
+from utils.ultralytics_custom_utils import Regression_Process
+
 logging.getLogger('SimpleITK').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
-# Load YOLO model
-def load_model(mode, model_name):
-    if mode == 'obb':
-        model = YOLO('yolov8n-obb.pt')
-        model = YOLO('weights/obb_yolo_last.pt')
-    elif mode == 'coco':
-        model = YOLO('yolov8n.pt')
-        model = YOLO('weights/coco_yolo_best.pt')
-    return model
-
-# Load regression model path
-def get_regression_model_path(model_name):
-    paths = {
-        'resnet18': 'weights/res18.pt',
-        'resnet50': 'weights/res50.pt',
-        'vgg16': 'weights/vgg16.pt',
-        'squeezenet': 'weights/squeezenet.pt',
-        'efficientnet': 'weights/effnet.pt'
-    }
-    return paths.get(model_name)
-
-# Calculate metrics
-def calculate_metrics(gt_list, pred_list):
-    mse = mean_squared_error(gt_list, pred_list)
-    mae = mean_absolute_error(gt_list, pred_list)
-    rmse = np.sqrt(mse)
-    r2 = r2_score(gt_list, pred_list)
-    bias = np.mean(np.array(gt_list) - np.array(pred_list))
-    reg = LinearRegression().fit(np.array(pred_list).reshape(-1, 1), np.array(gt_list).reshape(-1, 1))
-    calibration_slope = reg.coef_[0][0]
+def bmd_analysis(mode, weighted_mode, det_model_path, det_model_name, reg_model_path, reg_model_name, data_path, excel_path, dicom_path, z_threshold):
+    """
+    Bone Mineral Density (BMD) Analysis Function
     
-    return mse, mae, rmse, r2, bias, calibration_slope
-
-# Calculate sensitivity and specificity
-def calculate_sensitivity_specificity(gt_scores, pred_scores, threshold):
-    gt_scores = np.array(gt_scores)
-    pred_scores = np.array(pred_scores)
+    Parameters:
+    - mode (str): 'Train', 'Validation', or 'Test' mode
+    - weighted_mode (bool): Whether to use weighted mode
+    - det_model_path (str): Path to detection model
+    - det_model_name (str): Name of detection model
+    - reg_model_path (str): Path to regression model
+    - reg_model_name (str): Name of regression model
+    - data_path (str): Path to test data
+    - excel_path (str): Path to Excel file with ground truth BMD data (used in Train/Validation)
+    - dicom_path (str): Path to DXA data (used in Train/Validation)
+    - z_threshold (float): Z-score threshold
     
-    tp = np.sum((pred_scores > threshold) & (gt_scores > threshold))
-    fp = np.sum((pred_scores > threshold) & (gt_scores <= threshold))
-    tn = np.sum((pred_scores <= threshold) & (gt_scores <= threshold))
-    fn = np.sum((pred_scores <= threshold) & (gt_scores > threshold))
+    Returns:
+    - str: Analysis result summary
+    """
     
-    sensitivity = tp / (tp + fn) if tp + fn != 0 else 0
-    specificity = tn / (tn + fp) if tn + fp != 0 else 0
-    
-    return sensitivity, specificity
-
-# Plot and save correlation graph
-def plot_correlation(pred_list, gt_list):
-    plt.scatter(pred_list, gt_list)
-    plt.title('Correlation')
-    plt.xlabel('Predicted BMD Score')
-    plt.ylabel('Ground Truth BMD Score')
-    
-    z = np.polyfit(pred_list, gt_list, 1)
-    p = np.poly1d(z)
-    plt.plot(pred_list, p(pred_list), "r--")
-    
-    plt.savefig('correlation_graph.png')
-    plt.close()
-
-# Main function
-def main():
-    
-    #############################################
-    #엑셀 생성 코드
-    # 새 XLSX 파일을 생성하고 workbook 객체를 생성합니다.
-    workbook = xlsxwriter.Workbook('final.xlsx')
-    # workbook 객체 내에 worksheet 객체를 추가합니다.
-    worksheet = workbook.add_worksheet('bmds')
-    worksheet2 = workbook.add_worksheet('weighted_mean')
-    #############################################
-    
-    # mode_list = ['obb', 'coco']
-    # model_list = ['resnet18','vgg16','squeezenet','efficientnet']
-
-    mode = #학습, 검증, 예측 모드 받기
-
-    det_model_name = #디텍션 모델 이름 받기
-    reg_model_name = #회귀 모델 이름 받기
-
-    test_name = f'{mode}_{model_name}'
+    test_name = f'{mode}_{det_model_path}_{reg_model_path}'
 
     print(mode)
-    print(model_name)
+    print(f'{det_model_name} : {det_model_path}')
+    print(f'{reg_model_name} : {reg_model_path}')
+    print(weighted_mode)
+    
+    det_model = YOLO(det_model_path)
+    test_files = glob(f'{data_path}/*')
 
-    model = load_model(mode, model_name)
-    regression_model_path = get_regression_model_path(model_name)
-    
-    test_files = glob(f'{데이터 경로}/*')
-    excel_dir = f'{엑셀 파일 경로}' #여기도 Train, Validate에서만 필요.
-    dicom_dir = f'{DXA 데이터 경로}' #여기는 DXA만 받아서 할 수 있도록 만들어야겠다. 사실 이 부분은 Train, Validate에서만 필요.
-    
-    results = model(test_files, max_det=4, save_txt=True, save=True)
-    
-    bmd_data = pd.read_excel(excel_dir)
-    pred_bmd_score_mean_list = []
-    gt_bmd_score_list = []
-    boolean_list_mean = []
-    boolean_list_weighted_mean = []
-    z_class_list = []
-    z_class_w_list = []
-    z_gt_class_list = []
-    separate_gt_list = []
-    separate_pred_list = []
-    basename_list = []
-    weighted_mean_list = []
-    z_threshold = f'{Z 문턱치 조정}'
-    
-    for r in results:
+    # Load Excel data only if in Train or Validation mode
+    if mode in ['Train', 'Validation']:
+        bmd_data = pd.read_excel(excel_path)
+    else:
+        bmd_data = None
+
+    results_df = pd.DataFrame(columns=[
+        'basename', 'pred_bmd_score_mean', 'gt_bmd_score', 'boolean_mean', 'z_class', 'z_gt_class',
+        'weighted_mean', 'separate_gt', 'separate_pred'
+    ])
+
+    detection_results = det_model(test_files, max_det=4, save_txt=True, save=True)
+
+    for r in detection_results:
         image_basename = os.path.basename(r.path).split('.')[0]
         save_dir = r.save_dir
         r_label = save_dir + '/labels/' + image_basename + '.txt'
         r_shape = r.orig_shape
         
-        이 부분 내가 원하는 만큼 양을 다이내믹하게 추가할 수 있도록 수정하기.
-        image_basename, pred_bmd_score_weighted_mean, z_mean, z_weighted_mean, pred_bmd_score_mean, gt_bmd_score, bmd_data, z_class, z_gt_class, z_class_w, gt_bmd_list, bmd_list_cpu = Final_pipeline_yolov8(
-            test_name, model_name, r_shape, r_label, dicom_dir, bmd_data, mode, regression_model_path, z_threshold
+        result = Regression_Process(
+            reg_model_path, r_shape, r_label, dicom_path, bmd_data, mode, z_threshold
         )
         
-        for pred in bmd_list_cpu:
-            separate_pred_list.append(pred)
-        for gt in gt_bmd_list:
-            separate_gt_list.append(gt)
-        pred_bmd_score_mean_list.append(pred_bmd_score_mean)
-        gt_bmd_score_list.append(gt_bmd_score)
-        boolean_list_mean.append(z_mean)
-        boolean_list_weighted_mean.append(z_weighted_mean)
-        z_class_list.append(z_class)
-        z_class_w_list.append(z_class_w)
-        z_gt_class_list.append(z_gt_class)
-        basename_list.append(image_basename)
-        weighted_mean_list.append(pred_bmd_score_weighted_mean)
+        new_index = len(results_df)
 
-        ㅁ#여기서 결과 출력하기
+        # Select weighted or unweighted data based on mode
+        if weighted_mode:
+            results_df.loc[new_index] = [
+                result['image_basename'],
+                result['pred_bmd_score_mean'],
+                result['gt_bmd_score'],
+                result['class_result_weighted_mean'],
+                result['z_class_w'],
+                result['z_gt_class'],
+                result['pred_bmd_score_weighted_mean'],
+                result['gt_bmd_list'],
+                result['bmd_list_cpu']
+            ]
+        else:
+            results_df.loc[new_index] = [
+                result['image_basename'],
+                result['pred_bmd_score_mean'],
+                result['gt_bmd_score'],
+                result['class_result_mean'],
+                result['z_class'],
+                result['z_gt_class'],
+                result['pred_bmd_score_weighted_mean'],
+                result['gt_bmd_list'],
+                result['bmd_list_cpu']
+            ]
     
+    # Calculate metrics if in Train or Validation mode
+    if mode in ['Train', 'Validation']:
+        mse, mae, rmse, r2, bias, calibration_slope = calculate_metrics(
+            results_df['pred_bmd_score_mean'], results_df['gt_bmd_score']
+        )
 
-    ###########################################################################################################################################################################
-    #Metrics#
-    이 부분 내가 원하는 것만 사용할 수 있도록 만들고, Train/Validate에서만 작동하도록 만들기.
+        separate_mse, separate_mae, separate_rmse, separate_r2, separate_bias, separate_calibration_slope = calculate_metrics(
+            results_df['separate_pred'].explode(), results_df['separate_gt'].explode()
+        )
 
-    이 부분 내가 원하는 만큼 양을 다이내믹하게 추가할 수 있도록 수정하기.
-    mse, mae, rmse, r2, bias, calibration_slope = calculate_metrics(pred_bmd_score_mean_list, gt_bmd_score_list)
-    separate_mse, separate_mae, separate_rmse, separate_r2, separate_bias, separate_calibration_slope = calculate_metrics(separate_pred_list, separate_gt_list)
-    
+        # Calculate correlation
+        plot_correlation(results_df['pred_bmd_score_mean'], results_df['gt_bmd_score'])
+        corr, p_value = pearsonr(results_df['pred_bmd_score_mean'], results_df['gt_bmd_score'])
 
-    #correlation
-    plot_correlation(pred_bmd_score_mean_list, gt_bmd_score_list)
-    corr, p_value = pearsonr(pred_bmd_score_mean_list, gt_bmd_score_list)
-    #separate correlation
-    plot_correlation(separate_pred_list, separate_gt_list)
-    separate_corr, separate_p_value = pearsonr(separate_pred_list, separate_gt_list)
+        # Separate correlation
+        plot_correlation(results_df['separate_pred'].explode(), results_df['separate_gt'].explode())
+        separate_corr, separate_p_value = pearsonr(
+            results_df['separate_pred'].explode(), results_df['separate_gt'].explode()
+        )
 
-    
-    pred_bmd_score_mean = np.mean(pred_bmd_score_mean_list)
-    gt_bmd_score_mean = np.mean(gt_bmd_score_list)
-    accuracy_mean = sum(boolean_list_mean) / len(boolean_list_mean)
-    accuracy_weighted_mean = sum(boolean_list_weighted_mean) / len(boolean_list_weighted_mean)
-    
-    #sensitivity, specificity
-    sensitivity, specificity = calculate_sensitivity_specificity(z_gt_class_list, z_class_list, 0.5)
-    sensitivity_w, specificity_w = calculate_sensitivity_specificity(z_gt_class_list, z_class_w_list, 0.5)
-    
-    ###########################################################################################################################################################################
+        # Calculate average scores and accuracy
+        pred_bmd_score_mean = results_df['pred_bmd_score_mean'].mean()
+        gt_bmd_score_mean = results_df['gt_bmd_score'].mean()
+        accuracy_mean = results_df['boolean_mean'].mean()
 
-    이 내용 pyqt에서 출력하도록 만들기.
+        # Sensitivity and specificity
+        sensitivity, specificity = calculate_sensitivity_specificity(
+            results_df['z_gt_class'], results_df['z_class'], 0.5
+        )
 
-    result = (
+    # Compile result summary
+    result_summary = (
         f"<{test_name}>\n"
         f"##########################################################################################\n"
         f"*****Separate Version*****\n"
@@ -206,18 +147,30 @@ def main():
         f"Bland-Altman Bias : {bias}\n"
         f"R² (결정계수) : {r2}\n"
         f"Calibration Slope (CITL) : {calibration_slope}\n"
-        #f"Predicted BMD Score Mean : {pred_bmd_score_mean}\n"
-        #f"Ground Truth BMD Score Mean : {gt_bmd_score_mean}\n"
         f"Accuracy_mean : {accuracy_mean * 100:.2f}%\n"
-        f"Accuracy_weighted_mean : {accuracy_weighted_mean * 100:.2f}%\n"
         f"Sensitivity : {sensitivity:.2f}\n"
         f"Specificity : {specificity:.2f}\n"
-        f"Sensitivity_w : {sensitivity_w:.2f}\n"
-        f"Specificity_w : {specificity_w:.2f}\n"
         f"##########################################################################################\n\n"
     )
+
+    # 결과를 파일에 저장
     with open("result_save.txt", "a") as file:
-        file.write(result + "\n")                
-    workbook.close()
+        file.write(result_summary + "\n")
+    
+    return result_summary
+
+# Example usage
 if __name__ == "__main__":
-    main()
+    result = bmd_analysis(
+        mode='Train',
+        weighted_mode=True,
+        det_model_path='path/to/detection/model',
+        det_model_name='yolo',
+        reg_model_path='path/to/regression/model',
+        reg_model_name='resnet18',
+        data_path='path/to/data',
+        excel_path='path/to/excel',
+        dicom_path='path/to/dicom',
+        z_threshold=-2.0
+    )
+    print(result)
