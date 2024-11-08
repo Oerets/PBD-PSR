@@ -1,21 +1,28 @@
 import sys
+import json
 from PyQt5.QtWidgets import (
-    QApplication, QMainWindow, QVBoxLayout, QHBoxLayout, QLabel, QLineEdit,
-    QPushButton, QComboBox, QCheckBox, QSlider, QPlainTextEdit, QWidget, QFileDialog
+    QApplication, QMainWindow, QVBoxLayout, QLabel, QLineEdit, QPushButton,
+    QComboBox, QCheckBox, QSlider, QPlainTextEdit, QWidget, QFileDialog, QProgressBar
 )
 from PyQt5.QtCore import Qt
-from image_qt_backend import bmd_analysis  # bmd_analysis 함수 임포트
+import requests
 
 class BMDApp(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.settings_file = 'save_settings.txt'
         self.initUI()
-    
+        self.load_settings()  # 애플리케이션 시작 시 세팅을 불러옵니다.
+
     def initUI(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         
         main_layout = QVBoxLayout()
+
+        # ProgressBar 추가
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setValue(0)
 
         # Detection 및 Regression 모델 경로 설정
         self.det_model_path = QLineEdit()
@@ -99,62 +106,100 @@ class BMDApp(QMainWindow):
         self.setWindowTitle("BMD Analysis")
         self.setGeometry(300, 300, 600, 500)
 
+    # 경로 선택 및 세팅 저장
     def select_det_model_path(self):
         path, _ = QFileDialog.getOpenFileName(self, "Select Detection Model Path")
         if path:
             self.det_model_path.setText(path)
+            self.save_settings()
 
     def select_reg_model_path(self):
         path, _ = QFileDialog.getOpenFileName(self, "Select Regression Model Path")
         if path:
             self.reg_model_path.setText(path)
+            self.save_settings()
 
     def update_z_threshold_label(self, value):
         z_threshold_value = value / 10.0
         self.z_threshold_label.setText(f'Z-Threshold: {z_threshold_value}')
+        self.save_settings()
 
     def select_data_path(self):
         path = QFileDialog.getExistingDirectory(self, "Select Data Directory")
         if path:
             self.data_path.setText(path)
+            self.save_settings()
 
     def select_excel_path(self):
         path, _ = QFileDialog.getOpenFileName(self, "Select Excel File Path")
         if path:
             self.excel_path.setText(path)
+            self.save_settings()
 
     def select_dicom_path(self):
         path = QFileDialog.getExistingDirectory(self, "Select DICOM Directory")
         if path:
             self.dicom_path.setText(path)
+            self.save_settings()
+
+    # 세팅을 파일에 저장
+    def save_settings(self):
+        settings = {
+            'det_model_path': self.det_model_path.text(),
+            'reg_model_path': self.reg_model_path.text(),
+            'data_path': self.data_path.text(),
+            'excel_path': self.excel_path.text(),
+            'dicom_path': self.dicom_path.text(),
+            'z_threshold': self.z_threshold_slider.value(),
+            'weighted_mode': self.weighted_mode_checkbox.isChecked(),
+            'mode': self.mode_combo.currentText()
+        }
+        with open(self.settings_file, 'w') as f:
+            json.dump(settings, f)
+
+    # 세팅을 파일에서 불러오기
+    def load_settings(self):
+        try:
+            with open(self.settings_file, 'r') as f:
+                settings = json.load(f)
+                self.det_model_path.setText(settings.get('det_model_path', ''))
+                self.reg_model_path.setText(settings.get('reg_model_path', ''))
+                self.data_path.setText(settings.get('data_path', ''))
+                self.excel_path.setText(settings.get('excel_path', ''))
+                self.dicom_path.setText(settings.get('dicom_path', ''))
+                self.z_threshold_slider.setValue(settings.get('z_threshold', -20))
+                self.weighted_mode_checkbox.setChecked(settings.get('weighted_mode', False))
+                mode = settings.get('mode', 'Train')
+                if mode in ['Train', 'Validation', 'Test']:
+                    self.mode_combo.setCurrentText(mode)
+        except (FileNotFoundError, json.JSONDecodeError):
+            # 파일이 없거나 JSON 형식이 잘못된 경우 기본값 사용
+            pass
 
     def run_analysis(self):
         # 설정 값 가져오기
-        det_model_path = self.det_model_path.text()
-        reg_model_path = self.reg_model_path.text()
-        mode = self.mode_combo.currentText()
-        weighted_mode = self.weighted_mode_checkbox.isChecked()
-        z_threshold = self.z_threshold_slider.value() / 10.0
-        data_path = self.data_path.text()
-        excel_path = self.excel_path.text()
-        dicom_path = self.dicom_path.text()
+        data = {
+            'mode': self.mode_combo.currentText(),
+            'weighted_mode': self.weighted_mode_checkbox.isChecked(),
+            'det_model_path': self.det_model_path.text(),
+            'det_model_name': "yolo",
+            'reg_model_path': self.reg_model_path.text(),
+            'reg_model_name': "resnet18",
+            'data_path': self.data_path.text(),
+            'excel_path': self.excel_path.text(),
+            'dicom_path': self.dicom_path.text(),
+            'z_threshold': self.z_threshold_slider.value() / 10.0
+        }
 
-        # bmd_analysis 함수 호출
-        result = bmd_analysis(
-            mode=mode,
-            weighted_mode=weighted_mode,
-            det_model_path=det_model_path,
-            det_model_name="yolo",  # det_model_name 예시로 지정
-            reg_model_path=reg_model_path,
-            reg_model_name="resnet18",  # reg_model_name 예시로 지정
-            data_path=data_path,
-            excel_path=excel_path,
-            dicom_path=dicom_path,
-            z_threshold=z_threshold
-        )
-        
-        # 결과 출력
-        self.result_display.setPlainText(result)
+        # Flask API로 요청을 보내고 진행 상태 업데이트
+        response = requests.post("http://localhost:5000/analyze", json=data, stream=True)
+        for line in response.iter_lines():
+            if line:
+                status_update = json.loads(line.decode('utf-8')[5:])
+                self.progress_bar.setValue(status_update["progress"])
+                self.result_display.setPlainText(status_update.get("status", ""))
+                if status_update["progress"] == 100:
+                    self.result_display.setPlainText(status_update.get("result", ""))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

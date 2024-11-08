@@ -1,0 +1,8 @@
+numpy<1.25
+pandas
+scipy
+opencv-python-headless
+ultralytics
+scikit-learn
+SimpleITK
+Flask
