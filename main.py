@@ -27,10 +27,14 @@ class BMDApp(QMainWindow):
         # Detection 및 Regression 모델 경로 설정
         self.det_model_path = QLineEdit()
         self.det_model_select_button = QPushButton("Select Detection Model Path")
+        self.Detection_model_type = QComboBox()
+        self.Detection_model_type.addItems(["Yolov5", "Yolov8"])
         self.det_model_select_button.clicked.connect(self.select_det_model_path)
 
         self.reg_model_path = QLineEdit()
         self.reg_model_select_button = QPushButton("Select Regression Model Path")
+        self.Regression_model_type = QComboBox()
+        self.Regression_model_type.addItems(["resnet18", "resnet50", "vgg16", "squeezenet", "efficientnet"])
         self.reg_model_select_button.clicked.connect(self.select_reg_model_path)
 
         # 모드 선택
@@ -72,10 +76,12 @@ class BMDApp(QMainWindow):
         # 레이아웃에 위젯 추가
         main_layout.addWidget(QLabel("Detection Model Path"))
         main_layout.addWidget(self.det_model_path)
+        main_layout.addWidget(self.Detection_model_type)
         main_layout.addWidget(self.det_model_select_button)
 
         main_layout.addWidget(QLabel("Regression Model Path"))
         main_layout.addWidget(self.reg_model_path)
+        main_layout.addWidget(self.Regression_model_type)
         main_layout.addWidget(self.reg_model_select_button)
 
         main_layout.addWidget(QLabel("Mode"))
@@ -176,20 +182,41 @@ class BMDApp(QMainWindow):
             # 파일이 없거나 JSON 형식이 잘못된 경우 기본값 사용
             pass
 
+    def start_container(self):
+        # 입력 경로 확인
+        data_path = self.data_path.text()
+        model_path = self.model_path.text()
+        if not data_path or not model_path:
+            self.result_display.setPlainText("Please select both data and model paths.")
+            return
+
+        # Docker 실행 명령 구성
+        docker_command = [
+            "docker", "run", "--rm", "-p", "5000:5000",
+            "-v", f"{data_path}:/app/data",
+            "-v", f"{model_path}:/app/models",
+            "bmd_backend"
+        ]
+
     def run_analysis(self):
         # 설정 값 가져오기
         data = {
             'mode': self.mode_combo.currentText(),
             'weighted_mode': self.weighted_mode_checkbox.isChecked(),
-            'det_model_path': self.det_model_path.text(),
-            'det_model_name': "yolo",
+            'z_threshold': self.z_threshold_slider.value() / 10.0,
+            'det_model_name': self.Detection_model_type.currentText(),
+            'reg_model_name': self.Regression_model_type.currentText(),
+
             'reg_model_path': self.reg_model_path.text(),
-            'reg_model_name': "resnet18",
+            'det_model_path': self.det_model_path.text(),
             'data_path': self.data_path.text(),
             'excel_path': self.excel_path.text(),
             'dicom_path': self.dicom_path.text(),
-            'z_threshold': self.z_threshold_slider.value() / 10.0
         }
+
+        print(data)
+
+
 
         # Flask API로 요청을 보내고 진행 상태 업데이트
         response = requests.post("http://localhost:5000/analyze", json=data, stream=True)

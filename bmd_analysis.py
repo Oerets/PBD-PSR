@@ -8,13 +8,14 @@ from ultralytics import YOLO
 from scipy.stats import pearsonr
 from utils.metric_utils import *
 from utils.regression_model import load_regression_model
-from utils.ultralytics_custom_utils import Regression_Process
+from utils.ultralytics_custom_utils import Regression_process
 
 logging.getLogger('SimpleITK').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
 def bmd_analysis(mode, weighted_mode, det_model_path, det_model_name, reg_model_path, reg_model_name, data_path, excel_path, dicom_path, z_threshold):
     test_name = f'{mode}_{det_model_path}_{reg_model_path}'
+    print(test_name)
     det_model = YOLO(det_model_path)
     test_files = glob(f'{data_path}/*')
 
@@ -40,8 +41,8 @@ def bmd_analysis(mode, weighted_mode, det_model_path, det_model_name, reg_model_
         r_label = save_dir + '/labels/' + image_basename + '.txt'
         r_shape = r.orig_shape
         
-        result = Regression_Process(
-            reg_model_path, r_shape, r_label, dicom_path, bmd_data, mode, z_threshold
+        result = Regression_process(
+            mode, box_mode, reg_model_path, r_shape, r_label, dicom_path, bmd_data, z_threshold
         )
         
         new_index = len(results_df)

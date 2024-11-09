@@ -152,8 +152,12 @@ def mask_polygon_area(image, polygon):
     
     return masked_image
 
-def Regression_Process(model_name, regression_dir, r_shape, txt_dir, dicom_dir, bmd_data, mode, z_threshold=-2):
-    
+def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_dir, dicom_dir, bmd_data, z_threshold=-2):
+    if mode == Test:
+        bmd_data는 X
+        Dicom_data도 X
+        나이정보는 필요함
+
     bmd_list = []
     bmd_size_list = []
     gt_bmd_list = []
@@ -163,7 +167,7 @@ def Regression_Process(model_name, regression_dir, r_shape, txt_dir, dicom_dir, 
     regression_model = load_regression_model(model_name, regression_dir, device)
     
     # Read single txt file
-    bboxes = parse_bbox_file(txt_dir, mode, r_shape)
+    bboxes = parse_bbox_file(txt_dir, box_mode, r_shape)
     # Read single dicom file
     image_basename = os.path.basename(txt_dir).split('.')[0]
     dicom_dir = dicom_dir + '/' + image_basename + '.dcm'
@@ -222,24 +226,24 @@ def Regression_Process(model_name, regression_dir, r_shape, txt_dir, dicom_dir, 
     z_class_w = 0 if pred_z_score_weighted_mean < z_threshold else 1
     z_gt_class = 0 if gt_z_score < z_threshold else 1
     class_result_weighted_mean = 1 if z_class_w == z_gt_class else 0
-
-    # Pad `bmd_list_cpu` with zeros if less than 4 elements
-    while len(bmd_list_cpu) < 4:
-        bmd_list_cpu.append(np.array(0, dtype='float32'))
     
     result = {
         'image_basename': image_basename,
+
+        # 전부 나오는 것
+        'pred_bmd_score_mean': pred_bmd_score_mean,
         'pred_bmd_score_weighted_mean': pred_bmd_score_weighted_mean,
+        
         'class_result_mean': class_result_mean,
         'class_result_weighted_mean': class_result_weighted_mean,
-        'pred_bmd_score_mean': pred_bmd_score_mean,
-        'gt_bmd_score': gt_bmd_score,
-        'bmd_data': bmd_data,
+        
         'z_class': z_class,
-        'z_gt_class': z_gt_class,
         'z_class_w': z_class_w,
-        'gt_bmd_list': gt_bmd_list,
-        'bmd_list_cpu': bmd_list_cpu
     }
+
+    if mode in ['Train', 'Validation']:
+        # Train, Validate에서만 나오는 것
+        result['gt_bmd_score'] = gt_bmd_score
+        result['z_gt_class'] = z_gt_class
 
     return result

@@ -9,15 +9,38 @@ app = Flask(__name__)
 def analyze():
     data = request.json
     mode = data.get('mode')
-    weighted_mode = data.get('weighted_mode')
-    det_model_path = data.get('det_model_path')
-    det_model_name = data.get('det_model_name')
-    reg_model_path = data.get('reg_model_path')
-    reg_model_name = data.get('reg_model_name')
-    data_path = data.get('data_path')
-    excel_path = data.get('excel_path')
-    dicom_path = data.get('dicom_path')
-    z_threshold = data.get('z_threshold')
+    if mode == "Train":
+        weighted_mode = data.get('weighted_mode')
+        det_model_path = None
+        det_model_name = data.get('det_model_name')
+        reg_model_path = None
+        reg_model_name = data.get('reg_model_name')
+        data_path = data.get('data_path')
+        excel_path = data.get('excel_path')
+        dicom_path = data.get('dicom_path')
+        z_threshold = data.get('z_threshold')
+
+    if mode == "Validation":
+        weighted_mode = data.get('weighted_mode')
+        det_model_path = data.get('det_model_path')
+        det_model_name = data.get('det_model_name')
+        reg_model_path = data.get('reg_model_path')
+        reg_model_name = data.get('reg_model_name')
+        data_path = data.get('data_path')
+        excel_path = data.get('excel_path')
+        dicom_path = data.get('dicom_path')
+        z_threshold = data.get('z_threshold')
+
+    if mode == "Test":
+        weighted_mode = data.get('weighted_mode')
+        det_model_path = data.get('det_model_path')
+        det_model_name = data.get('det_model_name')
+        reg_model_path = data.get('reg_model_path')
+        reg_model_name = data.get('reg_model_name')
+        data_path = data.get('data_path')
+        excel_path = None
+        dicom_path = None
+        z_threshold = data.get('z_threshold')
 
     def generate():
         for status_update in bmd_analysis(
