@@ -1,30 +1,55 @@
 import sys
+import os
 import json
 from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QLabel, QLineEdit, QPushButton,
-    QComboBox, QCheckBox, QSlider, QPlainTextEdit, QWidget, QFileDialog, QProgressBar
+    QComboBox, QCheckBox, QSlider, QPlainTextEdit, QWidget, QFileDialog, QProgressBar, QHBoxLayout
 )
-from PyQt5.QtCore import Qt
-import requests
+from PyQt5.QtCore import Qt, QTimer
+from PyQt5.QtGui import QPixmap, QPainter, QPen
 
 class BMDApp(QMainWindow):
     def __init__(self):
         super().__init__()
         self.settings_file = 'save_settings.txt'
+        self.image_files = []
+        self.current_image_index = -1
         self.initUI()
-        self.load_settings()  # 애플리케이션 시작 시 세팅을 불러옵니다.
+        self.load_settings()  # Load settings on application start.
 
     def initUI(self):
         central_widget = QWidget()
         self.setCentralWidget(central_widget)
         
-        main_layout = QVBoxLayout()
+        # Create main horizontal layout
+        main_layout = QHBoxLayout()
 
-        # ProgressBar 추가
+        # Left layout for image display
+        self.image_label = QLabel("No Image")
+        self.image_label.setFixedSize(300, 400)  # Define a fixed size for the image display
+        self.image_label.setAlignment(Qt.AlignCenter)
+
+        # Previous and Next image buttons
+        self.prev_image_button = QPushButton("Previous Image")
+        self.prev_image_button.clicked.connect(self.show_previous_image)
+        self.next_image_button = QPushButton("Next Image")
+        self.next_image_button.clicked.connect(self.show_next_image)
+
+        # Add image widgets to layout
+        image_layout = QVBoxLayout()
+        image_layout.addWidget(self.image_label)
+        image_layout.addWidget(self.prev_image_button)
+        image_layout.addWidget(self.next_image_button)
+        main_layout.addLayout(image_layout)
+
+        # Right layout for controls
+        controls_layout = QVBoxLayout()
+
+        # ProgressBar
         self.progress_bar = QProgressBar()
         self.progress_bar.setValue(0)
 
-        # Detection 및 Regression 모델 경로 설정
+        # Detection and Regression model paths and options
         self.det_model_path = QLineEdit()
         self.det_model_select_button = QPushButton("Select Detection Model Path")
         self.Detection_model_type = QComboBox()
@@ -37,26 +62,25 @@ class BMDApp(QMainWindow):
         self.Regression_model_type.addItems(["resnet18", "resnet50", "vgg16", "squeezenet", "efficientnet"])
         self.reg_model_select_button.clicked.connect(self.select_reg_model_path)
 
-        # 모드 선택
+        # Mode selection
         self.mode_combo = QComboBox()
         self.mode_combo.addItems(['Train', 'Validation', 'Test'])
 
-        # Weighted Mode 체크박스
+        # Weighted Mode checkbox
         self.weighted_mode_checkbox = QCheckBox("Use Weighted Mode")
 
-        # Z-score 문턱치 조정 슬라이더
+        # Z-score threshold slider
         self.z_threshold_slider = QSlider(Qt.Horizontal)
         self.z_threshold_slider.setRange(-50, 50)
         self.z_threshold_slider.setValue(-20)
         self.z_threshold_label = QLabel('Z-Threshold: -2.0')
         self.z_threshold_slider.valueChanged.connect(self.update_z_threshold_label)
 
-        # 데이터 경로 설정
+        # Data, Excel, and DICOM path
         self.data_path = QLineEdit()
         self.data_path_button = QPushButton("Select Data Path")
         self.data_path_button.clicked.connect(self.select_data_path)
 
-        # Excel 및 DICOM 경로 설정
         self.excel_path = QLineEdit()
         self.excel_path_button = QPushButton("Select Excel File Path")
         self.excel_path_button.clicked.connect(self.select_excel_path)
@@ -65,54 +89,81 @@ class BMDApp(QMainWindow):
         self.dicom_path_button = QPushButton("Select DICOM Path")
         self.dicom_path_button.clicked.connect(self.select_dicom_path)
 
-        # Start 버튼
+        # Start button
         self.start_button = QPushButton("Start")
         self.start_button.clicked.connect(self.run_analysis)
 
-        # 결과 출력 창
+        # Results display
         self.result_display = QPlainTextEdit()
         self.result_display.setReadOnly(True)
 
-        # 레이아웃에 위젯 추가
-        main_layout.addWidget(QLabel("Detection Model Path"))
-        main_layout.addWidget(self.det_model_path)
-        main_layout.addWidget(self.Detection_model_type)
-        main_layout.addWidget(self.det_model_select_button)
+        # ProgressBar
+        self.progress_bar = QProgressBar()
+        self.progress_bar.setValue(0)
 
-        main_layout.addWidget(QLabel("Regression Model Path"))
-        main_layout.addWidget(self.reg_model_path)
-        main_layout.addWidget(self.Regression_model_type)
-        main_layout.addWidget(self.reg_model_select_button)
+        # Add widgets to controls layout
+        controls_layout.addWidget(QLabel("Detection Model Path"))
+        controls_layout.addWidget(self.det_model_path)
+        controls_layout.addWidget(self.Detection_model_type)
+        controls_layout.addWidget(self.det_model_select_button)
 
-        main_layout.addWidget(QLabel("Mode"))
-        main_layout.addWidget(self.mode_combo)
+        controls_layout.addWidget(QLabel("Regression Model Path"))
+        controls_layout.addWidget(self.reg_model_path)
+        controls_layout.addWidget(self.Regression_model_type)
+        controls_layout.addWidget(self.reg_model_select_button)
 
-        main_layout.addWidget(self.weighted_mode_checkbox)
+        controls_layout.addWidget(QLabel("Mode"))
+        controls_layout.addWidget(self.mode_combo)
 
-        main_layout.addWidget(self.z_threshold_label)
-        main_layout.addWidget(self.z_threshold_slider)
+        controls_layout.addWidget(self.weighted_mode_checkbox)
 
-        main_layout.addWidget(QLabel("Data Path"))
-        main_layout.addWidget(self.data_path)
-        main_layout.addWidget(self.data_path_button)
+        controls_layout.addWidget(self.z_threshold_label)
+        controls_layout.addWidget(self.z_threshold_slider)
 
-        main_layout.addWidget(QLabel("Excel File Path"))
-        main_layout.addWidget(self.excel_path)
-        main_layout.addWidget(self.excel_path_button)
+        controls_layout.addWidget(QLabel("Data Path"))
+        controls_layout.addWidget(self.data_path)
+        controls_layout.addWidget(self.data_path_button)
 
-        main_layout.addWidget(QLabel("DICOM Path"))
-        main_layout.addWidget(self.dicom_path)
-        main_layout.addWidget(self.dicom_path_button)
+        controls_layout.addWidget(QLabel("Excel File Path"))
+        controls_layout.addWidget(self.excel_path)
+        controls_layout.addWidget(self.excel_path_button)
 
-        main_layout.addWidget(self.start_button)
-        main_layout.addWidget(QLabel("Results"))
-        main_layout.addWidget(self.result_display)
+        controls_layout.addWidget(QLabel("DICOM Path"))
+        controls_layout.addWidget(self.dicom_path)
+        controls_layout.addWidget(self.dicom_path_button)
+
+        controls_layout.addWidget(self.start_button)
+        controls_layout.addWidget(QLabel("Results"))
+        controls_layout.addWidget(self.result_display)
+
+        # Add controls layout to the right side of the main layout
+        main_layout.addLayout(controls_layout)
         
         central_widget.setLayout(main_layout)
         self.setWindowTitle("BMD Analysis")
-        self.setGeometry(300, 300, 600, 500)
+        self.setGeometry(300, 500, 700, 500)
+        self.setFixedSize(700,700)
 
-    # 경로 선택 및 세팅 저장
+    def update_image(self):
+        if 0 <= self.current_image_index < len(self.image_files):
+            pixmap = QPixmap(self.image_files[self.current_image_index])
+            if not pixmap.isNull():
+                pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
+                self.image_label.setPixmap(pixmap)
+            else:
+                self.image_label.setText("Invalid Image Path")
+
+    def show_previous_image(self):
+        if self.current_image_index > 0:
+            self.current_image_index -= 1
+            self.update_image()
+
+    def show_next_image(self):
+        if self.current_image_index < len(self.image_files) - 1:
+            self.current_image_index += 1
+            self.update_image()
+
+    # Methods for path selection and settings
     def select_det_model_path(self):
         path, _ = QFileDialog.getOpenFileName(self, "Select Detection Model Path")
         if path:
@@ -130,11 +181,71 @@ class BMDApp(QMainWindow):
         self.z_threshold_label.setText(f'Z-Threshold: {z_threshold_value}')
         self.save_settings()
 
+    def draw_bounding_boxes(self, image_path, label_path):
+        pixmap = QPixmap(image_path)
+        if pixmap.isNull():
+            self.image_label.setText("Invalid Image")
+            return
+
+        painter = QPainter(pixmap)
+        pen = QPen(Qt.red, 2)
+        painter.setPen(pen)
+
+        try:
+            with open(label_path, 'r') as file:
+                lines = file.readlines()
+                for line in lines:
+                    values = list(map(float, line.strip().split()))
+                    if len(values) < 9:
+                        continue
+                    _, x1, y1, x2, y2, x3, y3, x4, y4 = values
+
+                    width = pixmap.width()
+                    height = pixmap.height()
+
+                    # Convert normalized coordinates to pixel coordinates
+                    x1, y1 = int(x1 * width), int(y1 * height)
+                    x2, y2 = int(x2 * width), int(y2 * height)
+                    x3, y3 = int(x3 * width), int(y3 * height)
+                    x4, y4 = int(x4 * width), int(y4 * height)
+
+                    painter.drawLine(x1, y1, x2, y2)
+                    painter.drawLine(x2, y2, x3, y3)
+                    painter.drawLine(x3, y3, x4, y4)
+                    painter.drawLine(x4, y4, x1, y1)
+
+        except FileNotFoundError:
+            self.result_display.appendPlainText(f"Label file not found for image: {image_path}")
+        painter.end()
+
+        #여기서 pixmap resize하는 과정이 빠져있다. 다시 하자.
+        pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)        
+        self.image_label.setPixmap(pixmap)
+
     def select_data_path(self):
         path = QFileDialog.getExistingDirectory(self, "Select Data Directory")
         if path:
             self.data_path.setText(path)
             self.save_settings()
+
+            # Scan directory and count image files
+            self.image_files = []
+            for root, dirs, files in os.walk(path):
+                for file in files:
+                    if file.lower().endswith(('.png', '.jpg', '.jpeg', '.bmp', '.gif')):
+                        self.image_files.append(os.path.join(root, file))
+
+            file_count = len(self.image_files)
+
+            # Display result in the Results display
+            self.result_display.appendPlainText(f"Data Path: {path}\nImage File Count: {file_count}\n")
+
+            # Initialize the image viewer if images are found
+            if self.image_files:
+                self.current_image_index = 0
+                self.update_image()
+            else:
+                self.image_label.setText("No Images Found")
 
     def select_excel_path(self):
         path, _ = QFileDialog.getOpenFileName(self, "Select Excel File Path")
@@ -148,7 +259,7 @@ class BMDApp(QMainWindow):
             self.dicom_path.setText(path)
             self.save_settings()
 
-    # 세팅을 파일에 저장
+    # Settings save/load methods
     def save_settings(self):
         settings = {
             'det_model_path': self.det_model_path.text(),
@@ -163,7 +274,6 @@ class BMDApp(QMainWindow):
         with open(self.settings_file, 'w') as f:
             json.dump(settings, f)
 
-    # 세팅을 파일에서 불러오기
     def load_settings(self):
         try:
             with open(self.settings_file, 'r') as f:
@@ -179,54 +289,92 @@ class BMDApp(QMainWindow):
                 if mode in ['Train', 'Validation', 'Test']:
                     self.mode_combo.setCurrentText(mode)
         except (FileNotFoundError, json.JSONDecodeError):
-            # 파일이 없거나 JSON 형식이 잘못된 경우 기본값 사용
             pass
 
-    def start_container(self):
-        # 입력 경로 확인
-        data_path = self.data_path.text()
-        model_path = self.model_path.text()
-        if not data_path or not model_path:
-            self.result_display.setPlainText("Please select both data and model paths.")
+    def run_analysis(self):
+        # Display current settings in the result display
+        self.result_display.clear()
+        settings = {
+            'Mode': self.mode_combo.currentText(),
+            'Weighted Mode': self.weighted_mode_checkbox.isChecked(),
+            'Z-Threshold': self.z_threshold_slider.value() / 10.0,
+            'Detection Model Type': self.Detection_model_type.currentText(),
+            'Regression Model Type': self.Regression_model_type.currentText(),
+            'Detection Model Path': self.det_model_path.text(),
+            'Regression Model Path': self.reg_model_path.text(),
+            'Data Path': self.data_path.text(),
+            'Excel Path': self.excel_path.text(),
+            'DICOM Path': self.dicom_path.text(),
+        }
+        for key, value in settings.items():
+            self.result_display.appendPlainText(f"{key}: {value}")
+
+        # Show progress message
+        self.result_display.appendPlainText("\nDetection in progress...")
+
+        # Set up progress bar
+        image_count = len(self.image_files)
+        if image_count == 0:
+            self.result_display.setPlainText("\nNo images found in the selected data path.")
             return
 
-        # Docker 실행 명령 구성
-        docker_command = [
-            "docker", "run", "--rm", "-p", "5000:5000",
-            "-v", f"{data_path}:/app/data",
-            "-v", f"{model_path}:/app/models",
-            "bmd_backend"
-        ]
+        self.progress_bar.setMaximum(image_count)
+        self.progress_bar.setValue(0)
 
-    def run_analysis(self):
-        # 설정 값 가져오기
-        data = {
-            'mode': self.mode_combo.currentText(),
-            'weighted_mode': self.weighted_mode_checkbox.isChecked(),
-            'z_threshold': self.z_threshold_slider.value() / 10.0,
-            'det_model_name': self.Detection_model_type.currentText(),
-            'reg_model_name': self.Regression_model_type.currentText(),
+        # Display tqdm-like progress in the result display
+        self.result_display.setPlainText("Progress: |" + " " * 50 + "| 0%")
+        self.tqdm_progress = 0
 
-            'reg_model_path': self.reg_model_path.text(),
-            'det_model_path': self.det_model_path.text(),
-            'data_path': self.data_path.text(),
-            'excel_path': self.excel_path.text(),
-            'dicom_path': self.dicom_path.text(),
-        }
+        # Simulate processing with a QTimer
+        self.current_progress = 0
+        self.timer = QTimer(self)
+        self.timer.timeout.connect(self.process_images)
+        self.timer.start(10)  # 0.01 seconds per image
 
-        print(data)
+    def process_images(self):
+        if self.current_progress < len(self.image_files):
+            # Update progress bar
+            self.progress_bar.setValue(self.current_progress + 1)
+            self.current_progress += 1
 
+            # Update tqdm-like progress
+            percentage = int((self.current_progress / len(self.image_files)) * 100)
+            num_hashes = percentage // 2
+            progress_bar = "|" + "#" * num_hashes + " " * (50 - num_hashes) + "|"
+            self.result_display.setPlainText(f"Progress: {progress_bar} {percentage}%")
+        else:
+            # Stop the timer when done
+            self.timer.stop() 
+            self.result_display.setPlainText("\nDetection complete.")
+            # Initialize image display with bounding boxes
+            self.current_image_index = 0
+            self.update_image_with_bbox()
 
+    def update_image_with_bbox(self):
+        print('update_image_with_bbox')
+        if 0 <= self.current_image_index < len(self.image_files):
+            image_path = self.image_files[self.current_image_index]
+            label_path = image_path.replace("images", "labels").replace(
+                os.path.splitext(image_path)[1], ".txt"
+            )
 
-        # Flask API로 요청을 보내고 진행 상태 업데이트
-        response = requests.post("http://localhost:5000/analyze", json=data, stream=True)
-        for line in response.iter_lines():
-            if line:
-                status_update = json.loads(line.decode('utf-8')[5:])
-                self.progress_bar.setValue(status_update["progress"])
-                self.result_display.setPlainText(status_update.get("status", ""))
-                if status_update["progress"] == 100:
-                    self.result_display.setPlainText(status_update.get("result", ""))
+            # Draw bounding boxes on the resized image
+            self.draw_bounding_boxes(image_path, label_path)
+
+        # Update the progress bar to reflect image changes
+        self.progress_bar.setValue(self.current_image_index + 1)
+
+    def show_previous_image(self):
+        print('show_previous_image')
+        if self.current_image_index > 0:
+            self.current_image_index -= 1
+            self.update_image_with_bbox()
+
+    def show_next_image(self):
+        print('show_next_image')
+        if self.current_image_index < len(self.image_files) - 1:
+            self.current_image_index += 1
+            self.update_image_with_bbox()
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)

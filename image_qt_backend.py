@@ -57,7 +57,4 @@ def analyze():
         ):
             yield f"data:{json.dumps(status_update)}\n\n"
 
-    return Response(generate(), mimetype='text/event-stream')
-
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=5000)
+33

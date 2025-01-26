@@ -23,8 +23,10 @@ def bmd_analysis(mode, weighted_mode, det_model_path, det_model_name, reg_model_
     if mode in ['Train', 'Validation']:
         bmd_data = pd.read_excel(excel_path)
     else:
-        bmd_data = None
+        bmd_data = pd.read_excel(excel_path)
 
+    box_mode = 'obbox' if 'obb' in os.path.basename(det_model_path).lower() else 'bbox'
+    
     results_df = pd.DataFrame(columns=[
         'basename', 'pred_bmd_score_mean', 'gt_bmd_score', 'boolean_mean', 'z_class', 'z_gt_class',
         'weighted_mean', 'separate_gt', 'separate_pred'
@@ -42,7 +44,7 @@ def bmd_analysis(mode, weighted_mode, det_model_path, det_model_name, reg_model_
         r_shape = r.orig_shape
         
         result = Regression_process(
-            mode, box_mode, reg_model_path, r_shape, r_label, dicom_path, bmd_data, z_threshold
+            mode, box_mode, reg_model_name, reg_model_path, r_shape, r_label, dicom_path, bmd_data, z_threshold
         )
         
         new_index = len(results_df)

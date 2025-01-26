@@ -1,6 +1,7 @@
 import numpy as np
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, mean_absolute_error, r2_score
+import PIL as plt
 
 # Calculate metrics
 def calculate_metrics(gt_list, pred_list):

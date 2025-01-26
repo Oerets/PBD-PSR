@@ -94,20 +94,20 @@ def find_bounding_box(coord_list):
 
     return center_x, center_y, width, height
 
-def parse_bbox_file(file_path, mode, r_shape):
+def parse_bbox_file(file_path, box_mode, r_shape):
     bboxes = []  # 바운딩 박스를 저장할 리스트
     height, width = r_shape  # 이미지 높이와 너비
 
     with open(file_path, 'r') as file:
         for line in file:
             parts = line.strip().split()
-            if mode == 'obb':  # c, x1, y1, x2, y2, x3, y3, x4, y4
+            if box_mode == 'obbox':  # c, x1, y1, x2, y2, x3, y3, x4, y4
                 # 클래스 레이블(c)을 제외하고 좌표만 추출하여 float 형태로 변환
                 coords = list(map(float, parts[1:]))  # x1, y1, x2, y2, x3, y3, x4, y4
                 # 정규화된 좌표를 실제 좌표로 변환
                 bbox = [coord * width if i % 2 == 0 else coord * height for i, coord in enumerate(coords)]
                 bboxes.append(bbox)
-            elif mode == 'coco': # c, x, y, w, h
+            elif box_mode == 'bbox': # c, x, y, w, h
                 # 클래스 레이블(c)을 제외하고 좌표만 추출하여 float 형태로 변환
                 predicted_bbox = list(map(float, parts[1:]))
                 if len(predicted_bbox) == 8:
@@ -125,16 +125,18 @@ def load_dicom_image(dicom_path):
     dicom_image = sitk.GetArrayFromImage(sitk.ReadImage(dicom_path))[0]
     return dicom_image
 
-def crop_image(image, coord, mode):
+def crop_image(image, coord, box_mode):
     """ 이미지를 주어진 좌표에 따라 자르는 함수 """
-    if mode == 'obb':
+    if box_mode == 'obbox':
         coord = polygon_to_bbox(coord)
+        print("obbox")
+    print(coord)
     cropped_image = crop_roi_with_margin(image, coord, margin=0.3)
     return cropped_image
 
-def crop_masked_image(image, coord, mode):
+def crop_masked_image(image, coord, box_mode):
     """ 이미지를 주어진 좌표에 따라 자르는 함수 """
-    if mode == 'obb':
+    if box_mode == 'obbox':
         coord = polygon_to_bbox(coord)
     cropped_image = crop_roi_with_margin(image, coord, margin=0.3)
     return cropped_image
@@ -153,10 +155,6 @@ def mask_polygon_area(image, polygon):
     return masked_image
 
 def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_dir, dicom_dir, bmd_data, z_threshold=-2):
-    if mode == Test:
-        bmd_data는 X
-        Dicom_data도 X
-        나이정보는 필요함
 
     bmd_list = []
     bmd_size_list = []
@@ -192,10 +190,10 @@ def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_
     bboxes = sorted(bboxes, key=lambda x: x[1])
     
     for bbox in bboxes:
-        if mode == "obb":
-            cropped_image  = crop_masked_image(dcm_img, bbox, mode)
+        if box_mode == "obbox":
+            cropped_image  = crop_masked_image(dcm_img, bbox, box_mode)
         else:    
-            cropped_image = crop_image(dcm_img, bbox, mode)
+            cropped_image = crop_image(dcm_img, bbox, box_mode)
         
         regression_image = torch_image(cropped_image, 0.5).to(device)
         bmd_size_list.append(regression_image.shape[2] * regression_image.shape[3])
