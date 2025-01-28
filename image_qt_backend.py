@@ -8,7 +8,11 @@ app = Flask(__name__)
 @app.route('/analyze', methods=['POST'])
 def analyze():
     data = request.json
+    if not data:
+        return jsonify({"error": "No data provided"}), 400
+    
     mode = data.get('mode')
+
     if mode == "Train":
         weighted_mode = data.get('weighted_mode')
         det_model_path = None
@@ -42,7 +46,15 @@ def analyze():
         dicom_path = None
         z_threshold = data.get('z_threshold')
 
-    def generate():
+    data_response = {
+    "name": "HEY",
+    "age": 12,
+    "message": "Take this!"
+    }
+
+    return jsonify(data_response)
+
+'''    def generate():
         for status_update in bmd_analysis(
             mode=mode,
             weighted_mode=weighted_mode,
@@ -55,6 +67,7 @@ def analyze():
             dicom_path=dicom_path,
             z_threshold=z_threshold
         ):
-            yield f"data:{json.dumps(status_update)}\n\n"
+            yield f"data:{json.dumps(status_update)}\n\n"'''
 
-33
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000, debug=True)

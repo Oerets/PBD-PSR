@@ -7,6 +7,7 @@ from PyQt5.QtWidgets import (
 )
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap, QPainter, QPen
+import requests
 
 class BMDApp(QMainWindow):
     def __init__(self):
@@ -14,8 +15,10 @@ class BMDApp(QMainWindow):
         self.settings_file = 'save_settings.txt'
         self.image_files = []
         self.current_image_index = -1
+        self.detection_finished = False
         self.initUI()
         self.load_settings()  # Load settings on application start.
+        self.url = "http://localhost:5000/analyze"
 
     def initUI(self):
         central_widget = QWidget()
@@ -91,7 +94,7 @@ class BMDApp(QMainWindow):
 
         # Start button
         self.start_button = QPushButton("Start")
-        self.start_button.clicked.connect(self.run_analysis)
+        self.start_button.clicked.connect(self.run_application)
 
         # Results display
         self.result_display = QPlainTextEdit()
@@ -181,42 +184,44 @@ class BMDApp(QMainWindow):
         self.z_threshold_label.setText(f'Z-Threshold: {z_threshold_value}')
         self.save_settings()
 
-    def draw_bounding_boxes(self, image_path, label_path):
+    def draw_display_image(self, image_path, label_path):
         pixmap = QPixmap(image_path)
         if pixmap.isNull():
             self.image_label.setText("Invalid Image")
             return
 
-        painter = QPainter(pixmap)
-        pen = QPen(Qt.red, 2)
-        painter.setPen(pen)
+        if self.detection_finished:
 
-        try:
-            with open(label_path, 'r') as file:
-                lines = file.readlines()
-                for line in lines:
-                    values = list(map(float, line.strip().split()))
-                    if len(values) < 9:
-                        continue
-                    _, x1, y1, x2, y2, x3, y3, x4, y4 = values
+            painter = QPainter(pixmap)
+            pen = QPen(Qt.red, 5)
+            painter.setPen(pen)
 
-                    width = pixmap.width()
-                    height = pixmap.height()
+            try:
+                with open(label_path, 'r') as file:
+                    lines = file.readlines()
+                    for line in lines:
+                        values = list(map(float, line.strip().split()))
+                        if len(values) < 9:
+                            continue
+                        _, x1, y1, x2, y2, x3, y3, x4, y4 = values
 
-                    # Convert normalized coordinates to pixel coordinates
-                    x1, y1 = int(x1 * width), int(y1 * height)
-                    x2, y2 = int(x2 * width), int(y2 * height)
-                    x3, y3 = int(x3 * width), int(y3 * height)
-                    x4, y4 = int(x4 * width), int(y4 * height)
+                        width = pixmap.width()
+                        height = pixmap.height()
 
-                    painter.drawLine(x1, y1, x2, y2)
-                    painter.drawLine(x2, y2, x3, y3)
-                    painter.drawLine(x3, y3, x4, y4)
-                    painter.drawLine(x4, y4, x1, y1)
+                        # Convert normalized coordinates to pixel coordinates
+                        x1, y1 = int(x1 * width), int(y1 * height)
+                        x2, y2 = int(x2 * width), int(y2 * height)
+                        x3, y3 = int(x3 * width), int(y3 * height)
+                        x4, y4 = int(x4 * width), int(y4 * height)
 
-        except FileNotFoundError:
-            self.result_display.appendPlainText(f"Label file not found for image: {image_path}")
-        painter.end()
+                        painter.drawLine(x1, y1, x2, y2)
+                        painter.drawLine(x2, y2, x3, y3)
+                        painter.drawLine(x3, y3, x4, y4)
+                        painter.drawLine(x4, y4, x1, y1)
+
+            except FileNotFoundError:
+                self.result_display.appendPlainText(f"Label file not found for image: {image_path}")
+            painter.end()
 
         #여기서 pixmap resize하는 과정이 빠져있다. 다시 하자.
         pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)        
@@ -291,9 +296,10 @@ class BMDApp(QMainWindow):
         except (FileNotFoundError, json.JSONDecodeError):
             pass
 
-    def run_analysis(self):
+    def run_application(self):
         # Display current settings in the result display
         self.result_display.clear()
+        url = self.url
         settings = {
             'Mode': self.mode_combo.currentText(),
             'Weighted Mode': self.weighted_mode_checkbox.isChecked(),
@@ -306,6 +312,28 @@ class BMDApp(QMainWindow):
             'Excel Path': self.excel_path.text(),
             'DICOM Path': self.dicom_path.text(),
         }
+
+        try:
+            response = requests.post(url, json=settings, timeout=5)  # 타임아웃 추가
+            if response.status_code == 200:
+                # JSON 응답을 문자열로 변환 후 출력
+                self.result_display.setPlainText(f"Response from server: {response.json()}")
+            else:
+                # 실패한 경우 상태 코드와 메시지를 출력
+                self.result_display.setPlainText(f"Failed: {response.status_code}, {response.text}")
+                print("Failed:", response.status_code, response.text)
+        except requests.exceptions.ConnectionError:
+            # 서버 연결 오류
+            self.result_display.setPlainText("Error: Unable to connect to the server. Is the server running?")
+        except requests.exceptions.Timeout:
+            # 요청 타임아웃 오류
+            self.result_display.setPlainText("Error: The request timed out.")
+        except Exception as e:
+            # 기타 예외 처리
+            self.result_display.setPlainText(f"An error occurred: {str(e)}")
+
+        
+        '''
         for key, value in settings.items():
             self.result_display.appendPlainText(f"{key}: {value}")
 
@@ -329,8 +357,12 @@ class BMDApp(QMainWindow):
         self.current_progress = 0
         self.timer = QTimer(self)
         self.timer.timeout.connect(self.process_images)
-        self.timer.start(10)  # 0.01 seconds per image
+        self.timer.start(50)  # 0.01 seconds per image
 
+        self.result_display.appendPlainText("\nDetection Completed")
+        self.detection_finished = True
+        self.update_image_with_bbox()
+        '''
     def process_images(self):
         if self.current_progress < len(self.image_files):
             # Update progress bar
@@ -359,7 +391,7 @@ class BMDApp(QMainWindow):
             )
 
             # Draw bounding boxes on the resized image
-            self.draw_bounding_boxes(image_path, label_path)
+            self.draw_display_image(image_path, label_path)
 
         # Update the progress bar to reflect image changes
         self.progress_bar.setValue(self.current_image_index + 1)
