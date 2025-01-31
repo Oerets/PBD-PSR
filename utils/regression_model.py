@@ -44,7 +44,7 @@ def load_regression_model(model_name, regression_dir, device):
     elif model_name == 'efficientnet':
         model = load_efficientnet(device)
     else:
-        raise ValueError("Unsupported model name")
+        raise ValueError(f"Unsupported model name : {model_name}")
     
     model.load_state_dict(torch.load(regression_dir))
     model.eval()

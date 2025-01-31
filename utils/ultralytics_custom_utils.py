@@ -225,23 +225,26 @@ def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_
     z_gt_class = 0 if gt_z_score < z_threshold else 1
     class_result_weighted_mean = 1 if z_class_w == z_gt_class else 0
     
+    print(gt_bmd_list)
+    print(gt_bmd_score)
+
     result = {
         'image_basename': image_basename,
 
-        # 전부 나오는 것
         'pred_bmd_score_mean': pred_bmd_score_mean,
         'pred_bmd_score_weighted_mean': pred_bmd_score_weighted_mean,
-        
+
         'class_result_mean': class_result_mean,
         'class_result_weighted_mean': class_result_weighted_mean,
-        
+
         'z_class': z_class,
         'z_class_w': z_class_w,
+
+        'gt_bmd_list' : gt_bmd_list,
+        'gt_bmd_score' : gt_bmd_score,
+        'gt_z_class' : z_gt_class,
+
+
+        'bmd_list_cpu' : bmd_list_cpu
     }
-
-    if mode in ['Train', 'Validation']:
-        # Train, Validate에서만 나오는 것
-        result['gt_bmd_score'] = gt_bmd_score
-        result['z_gt_class'] = z_gt_class
-
     return result

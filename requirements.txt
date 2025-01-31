@@ -6,3 +6,4 @@ ultralytics
 scikit-learn
 SimpleITK
 Flask
+openpyxl

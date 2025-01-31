@@ -5,9 +5,65 @@ from PyQt5.QtWidgets import (
     QApplication, QMainWindow, QVBoxLayout, QLabel, QLineEdit, QPushButton,
     QComboBox, QCheckBox, QSlider, QPlainTextEdit, QWidget, QFileDialog, QProgressBar, QHBoxLayout
 )
-from PyQt5.QtCore import Qt, QTimer
-from PyQt5.QtGui import QPixmap, QPainter, QPen
+from PyQt5.QtCore import Qt, QTimer, QThread, pyqtSignal
+from PyQt5.QtGui import QPixmap, QPainter, QPen, QImage
 import requests
+from pydicom import dcmread
+import numpy as np
+
+def normalize_pixel_array(pixel_array):
+    # 최소값과 최대값으로 정규화
+    min_val = np.min(pixel_array)
+    max_val = np.max(pixel_array)
+    pixel_array = ((pixel_array - min_val) / (max_val - min_val) * 255).astype(np.uint8)
+    return pixel_array
+
+def dicom_to_pixmap(dicom_path):
+    # DICOM 파일 읽기
+    dicom_data = dcmread(dicom_path)
+
+    # Pixel 데이터 추출
+    pixel_array = dicom_data.pixel_array
+
+    # DICOM 데이터를 8비트로 정규화 (0-255)
+    pixel_array = normalize_pixel_array(pixel_array)
+
+    # Numpy 배열을 QImage로 변환
+    height, width = pixel_array.shape
+    bytes_per_line = width  # 그레이스케일이므로 width 그대로 사용
+    qimage = QImage(
+        pixel_array.data, width, height, bytes_per_line, QImage.Format_Grayscale8
+    )
+
+    # QImage를 QPixmap으로 변환
+    pixmap = QPixmap.fromImage(qimage)
+    return pixmap
+
+class StreamWorker(QThread):
+    """
+    Flask 서버에서 실시간 스트리밍 데이터를 받아오는 백그라운드 스레드
+    """
+    data_received = pyqtSignal(str)  # 데이터를 메인 스레드(UI)로 전달하는 시그널
+
+    def __init__(self, url, settings):
+        super().__init__()  # QThread 초기화
+        self.url = url  # Flask 서버 URL
+        self.settings = settings  # JSON 설정 데이터
+
+    def run(self):
+        """
+        서버와 통신을 실행하는 메서드 (이 메서드는 백그라운드에서 실행됨)
+        """
+        try:
+            with requests.post(self.url, json=self.settings, stream=True) as response:
+                for line in response.iter_lines():
+                    if line:
+                        decoded_line = line.decode('utf-8').strip()
+                        if decoded_line.startswith("data: "):  # 서버에서 오는 데이터 필터링
+                            plain_text = json.dumps(json.loads(decoded_line[6:]), indent=4, ensure_ascii=False)
+                            self.data_received.emit(plain_text)  # 📌 메인 스레드(UI)로 데이터 전달
+        except Exception as e:
+            self.data_received.emit(f"Error: {str(e)}")  # 오류 발생 시 UI에 출력
 
 class BMDApp(QMainWindow):
     def __init__(self):
@@ -33,6 +89,7 @@ class BMDApp(QMainWindow):
         self.image_label.setAlignment(Qt.AlignCenter)
 
         # Previous and Next image buttons
+        self.current_image_name_label = QLabel("No Image")
         self.prev_image_button = QPushButton("Previous Image")
         self.prev_image_button.clicked.connect(self.show_previous_image)
         self.next_image_button = QPushButton("Next Image")
@@ -41,6 +98,7 @@ class BMDApp(QMainWindow):
         # Add image widgets to layout
         image_layout = QVBoxLayout()
         image_layout.addWidget(self.image_label)
+        image_layout.addWidget(self.current_image_name_label)
         image_layout.addWidget(self.prev_image_button)
         image_layout.addWidget(self.next_image_button)
         main_layout.addLayout(image_layout)
@@ -62,12 +120,12 @@ class BMDApp(QMainWindow):
         self.reg_model_path = QLineEdit()
         self.reg_model_select_button = QPushButton("Select Regression Model Path")
         self.Regression_model_type = QComboBox()
-        self.Regression_model_type.addItems(["resnet18", "resnet50", "vgg16", "squeezenet", "efficientnet"])
+        self.Regression_model_type.addItems(["resnet50", "resnet18", "vgg16", "squeezenet", "efficientnet"])
         self.reg_model_select_button.clicked.connect(self.select_reg_model_path)
 
         # Mode selection
         self.mode_combo = QComboBox()
-        self.mode_combo.addItems(['Train', 'Validation', 'Test'])
+        self.mode_combo.addItems(['Train(unavailable)', 'Validation(unavailable)', 'Test'])
 
         # Weighted Mode checkbox
         self.weighted_mode_checkbox = QCheckBox("Use Weighted Mode")
@@ -149,10 +207,13 @@ class BMDApp(QMainWindow):
 
     def update_image(self):
         if 0 <= self.current_image_index < len(self.image_files):
-            pixmap = QPixmap(self.image_files[self.current_image_index])
+            image_path = self.image_files[self.current_image_index]
+            pixmap = QPixmap(image_path)
             if not pixmap.isNull():
                 pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
                 self.image_label.setPixmap(pixmap)
+                self.current_image_name_label.setText(f"{os.path.basename(image_path)} ({self.current_image_index+1}/{len(self.image_files)})")
+
             else:
                 self.image_label.setText("Invalid Image Path")
 
@@ -185,13 +246,17 @@ class BMDApp(QMainWindow):
         self.save_settings()
 
     def draw_display_image(self, image_path, label_path):
-        pixmap = QPixmap(image_path)
+        # DICOM 파일인지 확인 및 처리
+        if image_path.lower().endswith(".dcm"):
+            pixmap = dicom_to_pixmap(image_path)
+        else:
+            pixmap = QPixmap(image_path)
+        
         if pixmap.isNull():
             self.image_label.setText("Invalid Image")
             return
 
         if self.detection_finished:
-
             painter = QPainter(pixmap)
             pen = QPen(Qt.red, 5)
             painter.setPen(pen)
@@ -220,12 +285,17 @@ class BMDApp(QMainWindow):
                         painter.drawLine(x4, y4, x1, y1)
 
             except FileNotFoundError:
-                self.result_display.appendPlainText(f"Label file not found for image: {image_path}")
+                self.display_update_with_clear(f"Label file not found for image: {image_path}")
             painter.end()
 
-        #여기서 pixmap resize하는 과정이 빠져있다. 다시 하자.
-        pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)        
+        # Pixmap 리사이즈
+        pixmap = pixmap.scaled(self.image_label.size(), Qt.KeepAspectRatio, Qt.SmoothTransformation)
         self.image_label.setPixmap(pixmap)
+
+    def display_update_with_clear(self, text):
+        self.result_display.clear()
+        #self.result_display.appendPlainText(text)
+        QTimer.singleShot(0, lambda: self.result_display.setPlainText(text))
 
     def select_data_path(self):
         path = QFileDialog.getExistingDirectory(self, "Select Data Directory")
@@ -243,7 +313,7 @@ class BMDApp(QMainWindow):
             file_count = len(self.image_files)
 
             # Display result in the Results display
-            self.result_display.appendPlainText(f"Data Path: {path}\nImage File Count: {file_count}\n")
+            self.display_update_with_clear(f"Data Path: {path}\nImage File Count: {file_count}\n")
 
             # Initialize the image viewer if images are found
             if self.image_files:
@@ -297,72 +367,32 @@ class BMDApp(QMainWindow):
             pass
 
     def run_application(self):
-        # Display current settings in the result display
-        self.result_display.clear()
-        url = self.url
+        """
+        UI 버튼이 클릭될 때 실행되는 메서드 (메인 스레드에서 실행)
+        """
+        self.result_display.clear()  # 기존 데이터 삭제
+
+        url = self.url  # 서버 URL
         settings = {
-            'Mode': self.mode_combo.currentText(),
-            'Weighted Mode': self.weighted_mode_checkbox.isChecked(),
-            'Z-Threshold': self.z_threshold_slider.value() / 10.0,
-            'Detection Model Type': self.Detection_model_type.currentText(),
-            'Regression Model Type': self.Regression_model_type.currentText(),
-            'Detection Model Path': self.det_model_path.text(),
-            'Regression Model Path': self.reg_model_path.text(),
-            'Data Path': self.data_path.text(),
-            'Excel Path': self.excel_path.text(),
-            'DICOM Path': self.dicom_path.text(),
+            'mode': self.mode_combo.currentText(),
+            'weighted_mode': self.weighted_mode_checkbox.isChecked(),
+            'z_threshold': self.z_threshold_slider.value() / 10.0,
+            'det_model_type': self.Detection_model_type.currentText(),
+            'reg_model_type': self.Regression_model_type.currentText(),
+            'det_model_path': self.det_model_path.text(),
+            'reg_model_path': self.reg_model_path.text(),
+            'data_path': self.data_path.text(),
+            'excel_path': self.excel_path.text(),
+            'dicom_path': self.dicom_path.text(),
         }
 
-        try:
-            response = requests.post(url, json=settings, timeout=5)  # 타임아웃 추가
-            if response.status_code == 200:
-                # JSON 응답을 문자열로 변환 후 출력
-                self.result_display.setPlainText(f"Response from server: {response.json()}")
-            else:
-                # 실패한 경우 상태 코드와 메시지를 출력
-                self.result_display.setPlainText(f"Failed: {response.status_code}, {response.text}")
-                print("Failed:", response.status_code, response.text)
-        except requests.exceptions.ConnectionError:
-            # 서버 연결 오류
-            self.result_display.setPlainText("Error: Unable to connect to the server. Is the server running?")
-        except requests.exceptions.Timeout:
-            # 요청 타임아웃 오류
-            self.result_display.setPlainText("Error: The request timed out.")
-        except Exception as e:
-            # 기타 예외 처리
-            self.result_display.setPlainText(f"An error occurred: {str(e)}")
+        self.result_display.setPlainText("Starting process...")
 
-        
-        '''
-        for key, value in settings.items():
-            self.result_display.appendPlainText(f"{key}: {value}")
-
-        # Show progress message
-        self.result_display.appendPlainText("\nDetection in progress...")
-
-        # Set up progress bar
-        image_count = len(self.image_files)
-        if image_count == 0:
-            self.result_display.setPlainText("\nNo images found in the selected data path.")
-            return
-
-        self.progress_bar.setMaximum(image_count)
-        self.progress_bar.setValue(0)
-
-        # Display tqdm-like progress in the result display
-        self.result_display.setPlainText("Progress: |" + " " * 50 + "| 0%")
-        self.tqdm_progress = 0
-
-        # Simulate processing with a QTimer
-        self.current_progress = 0
-        self.timer = QTimer(self)
-        self.timer.timeout.connect(self.process_images)
-        self.timer.start(50)  # 0.01 seconds per image
-
-        self.result_display.appendPlainText("\nDetection Completed")
-        self.detection_finished = True
-        self.update_image_with_bbox()
-        '''
+        # 백그라운드 스레드 실행
+        self.worker = StreamWorker(url, settings)
+        self.worker.data_received.connect(self.result_display.appendPlainText)  # UI 업데이트 연결
+        self.worker.start()  # 스레드 시작
+                
     def process_images(self):
         if self.current_progress < len(self.image_files):
             # Update progress bar
@@ -389,7 +419,7 @@ class BMDApp(QMainWindow):
             label_path = image_path.replace("images", "labels").replace(
                 os.path.splitext(image_path)[1], ".txt"
             )
-
+            self.current_image_name_label.setText(f"{os.path.basename(image_path)} ({self.current_image_index+1}/{len(self.image_files)})")
             # Draw bounding boxes on the resized image
             self.draw_display_image(image_path, label_path)
 
