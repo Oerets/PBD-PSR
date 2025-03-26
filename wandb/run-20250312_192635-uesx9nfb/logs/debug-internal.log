@@ -1,0 +1,15 @@
+{"time":"2025-03-12T19:26:36.2364071+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250312_192635-uesx9nfb\\logs\\debug-core.log"}
+{"time":"2025-03-12T19:26:36.3459326+09:00","level":"INFO","msg":"created new stream","id":"uesx9nfb"}
+{"time":"2025-03-12T19:26:36.3459326+09:00","level":"INFO","msg":"stream: started","id":"uesx9nfb"}
+{"time":"2025-03-12T19:26:36.3459326+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"uesx9nfb"}
+{"time":"2025-03-12T19:26:36.3459326+09:00","level":"INFO","msg":"sender: started","stream_id":"uesx9nfb"}
+{"time":"2025-03-12T19:26:36.3459326+09:00","level":"INFO","msg":"handler: started","stream_id":"uesx9nfb"}
+{"time":"2025-03-12T19:26:36.6904948+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-12T22:00:09.5440372+09:00","level":"INFO","msg":"stream: closing","id":"uesx9nfb"}
+{"time":"2025-03-12T22:00:09.5450371+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-12T22:00:09.5455429+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-12T22:00:10.2766631+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-12T22:00:10.5040383+09:00","level":"INFO","msg":"handler: closed","stream_id":"uesx9nfb"}
+{"time":"2025-03-12T22:00:10.5040383+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"uesx9nfb"}
+{"time":"2025-03-12T22:00:10.5040383+09:00","level":"INFO","msg":"sender: closed","stream_id":"uesx9nfb"}
+{"time":"2025-03-12T22:00:10.5040383+09:00","level":"INFO","msg":"stream: closed","id":"uesx9nfb"}

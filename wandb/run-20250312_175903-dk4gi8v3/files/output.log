@@ -1,0 +1,34 @@
+(187, 288)
+Process Process-3:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 47, in train_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 71, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 220, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 189, in process_image
+    plt.show()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\matplotlib\pyplot.py", line 446, in show
+    return _get_backend_mod().show(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\matplotlib\backend_bases.py", line 3620, in show
+    cls.mainloop()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\matplotlib\backends\backend_qt.py", line 603, in start_main_loop
+    qt_compat._exec(qapp)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\contextlib.py", line 120, in __exit__
+    next(self.gen)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\matplotlib\backends\qt_compat.py", line 245, in _maybe_allow_interrupt
+    old_sigint_handler(*handler_args)
+KeyboardInterrupt

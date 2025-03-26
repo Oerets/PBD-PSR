@@ -1,0 +1,12 @@
+Fold 4 | Epoch [1/80] | Train Loss: 0.0230 | Val Loss: 0.0186 | R2: -0.0189 | Pearson: -0.0360 | Best Correlation : -0.0360 | Best Epoch : 0
+Process Process-4:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\cross-validation.py", line 51, in train_fold
+    val_loss, r2_score, pearson_corr = evaluate_model(model, val_loader, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\cross-validation.py", line 108, in evaluate_model
+    total_loss += loss.item()
+KeyboardInterrupt

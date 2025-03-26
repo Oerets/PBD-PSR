@@ -1,0 +1,45 @@
+Epoch [1/50] | Train Loss: 0.0186 | Val Loss: 0.0408 | R2: -1.3192 | Pearson: 0.0922
+Epoch [2/50] | Train Loss: 0.0147 | Val Loss: 0.0721 | R2: -3.1063 | Pearson: 0.3022
+Epoch [3/50] | Train Loss: 0.0135 | Val Loss: 0.0863 | R2: -3.9091 | Pearson: 0.2592
+Epoch [4/50] | Train Loss: 0.0128 | Val Loss: 0.0204 | R2: -0.1596 | Pearson: 0.3897
+Epoch [5/50] | Train Loss: 0.0127 | Val Loss: 0.2027 | R2: -10.5416 | Pearson: 0.1249
+Epoch [6/50] | Train Loss: 0.0123 | Val Loss: 0.1642 | R2: -8.3450 | Pearson: 0.2515
+Epoch [7/50] | Train Loss: 0.0116 | Val Loss: 0.0479 | R2: -1.7249 | Pearson: 0.1952
+Epoch [8/50] | Train Loss: 0.0116 | Val Loss: 0.0529 | R2: -2.0099 | Pearson: 0.4045
+Epoch [9/50] | Train Loss: 0.0109 | Val Loss: 0.0554 | R2: -2.1578 | Pearson: 0.2903
+Epoch [10/50] | Train Loss: 0.0102 | Val Loss: 0.0286 | R2: -0.6287 | Pearson: 0.4794
+Epoch [11/50] | Train Loss: 0.0099 | Val Loss: 0.0145 | R2: 0.1746 | Pearson: 0.5128
+Epoch [12/50] | Train Loss: 0.0094 | Val Loss: 0.0613 | R2: -2.4914 | Pearson: 0.4194
+Epoch [13/50] | Train Loss: 0.0089 | Val Loss: 0.0297 | R2: -0.6925 | Pearson: 0.3742
+Epoch [14/50] | Train Loss: 0.0086 | Val Loss: 0.1021 | R2: -4.8138 | Pearson: 0.3899
+Epoch [15/50] | Train Loss: 0.0080 | Val Loss: 0.0424 | R2: -1.4078 | Pearson: 0.5409
+Traceback (most recent call last):
+  File "train.py", line 127, in <module>
+    train_5_fold(dataset, batch_size=16, epochs=50, learning_rate=0.00001, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 49, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 85, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 213, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 187, in process_image
+    A.Normalize(mean=(0.5,), std=(0.5,)),  # 정규화
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\albumentations\core\validation.py", line 21, in custom_init
+    init_params = signature(original_init).parameters
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\inspect.py", line 3105, in signature
+    return Signature.from_callable(obj, follow_wrapped=follow_wrapped)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\inspect.py", line 2854, in from_callable
+    return _signature_from_callable(obj, sigcls=cls,
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\inspect.py", line 2304, in _signature_from_callable
+    return _signature_from_function(sigcls, obj,
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\inspect.py", line 2175, in _signature_from_function
+    kind = _POSITIONAL_ONLY if posonly_left else _POSITIONAL_OR_KEYWORD
+KeyboardInterrupt

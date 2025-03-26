@@ -1,0 +1,100 @@
+(146, 188)
+(171, 206)
+(156, 292)
+(143, 195)
+(180, 319)
+(172, 371)
+(73, 88)
+(181, 200)
+(178, 262)
+(89, 103)
+(92, 104)
+(173, 248)
+(83, 102)
+(165, 235)
+(180, 313)
+(74, 77)
+(133, 204)
+(193, 217)
+(171, 226)
+(271, 315)
+(241, 313)
+(166, 266)
+(226, 287)
+(189, 245)
+(296, 358)
+(244, 350)
+(142, 206)
+(171, 238)
+(253, 348)
+(174, 336)
+(189, 231)
+(199, 257)
+(288, 275)
+(199, 204)
+(160, 204)
+(117, 190)
+(314, 320)
+(146, 345)
+(279, 339)
+(127, 194)
+(199, 292)
+(200, 278)
+(125, 197)
+(162, 243)
+(176, 196)
+(195, 236)
+(76, 94)
+(58, 88)
+(183, 196)
+(160, 262)
+(72, 100)
+(132, 308)
+(134, 261)
+(221, 188)
+(198, 330)
+(196, 309)
+(217, 252)
+(128, 193)
+(220, 231)
+(199, 305)
+(251, 359)
+(180, 242)
+(125, 222)
+(177, 176)
+(199, 365)
+(154, 174)
+(190, 367)
+(172, 210)
+(56, 66)
+(139, 186)
+(109, 223)
+(205, 372)
+out of bound vert detected
+Process Process-1:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 46, in train_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 70, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 317, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in collate
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in <listcomp>
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 146, in collate
+    return collate_fn_map[collate_type](batch, collate_fn_map=collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 227, in collate_numpy_scalar_fn
+    return torch.as_tensor(batch)
+RuntimeError: Could not infer dtype of NoneType

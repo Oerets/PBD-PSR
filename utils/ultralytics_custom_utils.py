@@ -9,6 +9,7 @@ from .regression_model import load_regression_model
 import cv2
 import warnings
 import logging
+from utils.Harmonize import *
 logging.getLogger('SimpleITK').setLevel(logging.ERROR)
 warnings.filterwarnings("ignore")
 
@@ -129,8 +130,6 @@ def crop_image(image, coord, box_mode):
     """ 이미지를 주어진 좌표에 따라 자르는 함수 """
     if box_mode == 'obbox':
         coord = polygon_to_bbox(coord)
-        print("obbox")
-    print(coord)
     cropped_image = crop_roi_with_margin(image, coord, margin=0.3)
     return cropped_image
 
@@ -154,37 +153,39 @@ def mask_polygon_area(image, polygon):
     
     return masked_image
 
-def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_dir, dicom_dir, bmd_data, z_threshold=-2):
+def Vertebra_regression_process(box_mode, model_name, regression_dir, r_shape, txt_dir, dicom_dir, bmd_data, z_threshold=-2):
 
+    #빈 리스트 만들고
     bmd_list = []
     bmd_size_list = []
     gt_bmd_list = []
     
-    # Load Regression model
+    # 모델 불러오고 (cuda / cpu)
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     regression_model = load_regression_model(model_name, regression_dir, device)
     
-    # Read single txt file
+    #Detection모델에서 만든 bbox 좌표 가져오기
     bboxes = parse_bbox_file(txt_dir, box_mode, r_shape)
-    # Read single dicom file
-    image_basename = os.path.basename(txt_dir).split('.')[0]
-    dicom_dir = dicom_dir + '/' + image_basename + '.dcm'
-    dcm_img = load_dicom_image(dicom_dir)
-
-    # Read single excel file
-    row = bmd_data[bmd_data['ID'].astype(str) == image_basename]
-    ref_mean = row['Mean'].values[0] if not row.empty else None
-    ref_std = row['SD'].values[0] if not row.empty else None
+    #다이콤 파일 불러오기
+    image_basename = os.path.basename(dicom_dir).split('.')[0]
+    dcm_img = normalize_dicom_image(dicom_dir)
     
-    gt_bmd_score = row['Total'].values[0] if not row.empty else None
-    gt_z_score = row['Zscore_Total'].values[0] if not row.empty else None
-    
-    gt_bmd_l1 = row['L1'].values[0] if not row.empty else None
-    gt_bmd_l2 = row['L2'].values[0] if not row.empty else None
-    gt_bmd_l3 = row['L3'].values[0] if not row.empty else None
-    gt_bmd_l4 = row['L4'].values[0] if not row.empty else None
-    
-    gt_bmd_list.extend([gt_bmd_l1, gt_bmd_l2, gt_bmd_l3, gt_bmd_l4])
+    Check_gt = False
+    #엑셀 파일 불러오기(이 부분은 Test이기 때문에 필요없을 듯 하다. 따로 빼두자.)
+    if Check_gt:
+        row = bmd_data[bmd_data['ID'].astype(str) == image_basename]
+        ref_mean = row['Mean'].values[0] if not row.empty else None
+        ref_std = row['SD'].values[0] if not row.empty else None
+        
+        gt_bmd_score = row['Total'].values[0] if not row.empty else None
+        gt_z_score = row['Zscore_Total'].values[0] if not row.empty else None
+        
+        gt_bmd_l1 = row['L1'].values[0] if not row.empty else None
+        gt_bmd_l2 = row['L2'].values[0] if not row.empty else None
+        gt_bmd_l3 = row['L3'].values[0] if not row.empty else None
+        gt_bmd_l4 = row['L4'].values[0] if not row.empty else None
+        
+        gt_bmd_list.extend([gt_bmd_l1, gt_bmd_l2, gt_bmd_l3, gt_bmd_l4])
     
     # Crop image
     bboxes = sorted(bboxes, key=lambda x: x[1])
@@ -201,8 +202,9 @@ def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_
         # Predict with the model
         prediction = regression_model(regression_image)
         bmd_list.append(prediction[0][0])
-    
-    # Calculate mean and weighted mean
+
+    #Metric 측정하는 부분, 복잡하고 이상해서 일단 제거함. Test기 때문에 필요 없을 듯.
+    # # Calculate mean and weighted mean
     bmd_list_cpu = [x.detach().cpu().numpy() if x.is_cuda else x.detach().numpy() for x in bmd_list]
     bmd_size_list_cpu = [x.detach().cpu().numpy() if torch.is_tensor(x) and x.is_cuda else x.numpy() if torch.is_tensor(x) else x for x in bmd_size_list]
 
@@ -211,6 +213,8 @@ def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_
     # Weighted mean
     pred_bmd_score_weighted_mean = np.sum([x * y for x, y in zip(bmd_list_cpu, bmd_size_list_cpu)]) / np.sum(bmd_size_list_cpu)
 
+    #시간 내서 싹 갈아엎어야겠다.
+    '''
     # Calculate z-score for mean and weighted mean
     pred_z_score_mean = (pred_bmd_score_mean - ref_mean) / ref_std
     pred_z_score_weighted_mean = (pred_bmd_score_weighted_mean - ref_mean) / ref_std
@@ -226,25 +230,54 @@ def Regression_process(mode, box_mode, model_name, regression_dir, r_shape, txt_
     class_result_weighted_mean = 1 if z_class_w == z_gt_class else 0
     
     print(gt_bmd_list)
-    print(gt_bmd_score)
+    print(gt_bmd_score)'''
+    
+    result = {
+        'image_basename': image_basename,
+        'pred_bmd_score_mean': pred_bmd_score_mean,
+        'pred_bmd_score_weighted_mean': pred_bmd_score_weighted_mean,
+        'bmd_list' : bmd_list_cpu,
+    }
+    return result
+
+def Hip_regression_process(model_name, regression_dir, r_shape, txt_dir, dicom_dir, bmd_data, z_threshold=-2):
+    
+    # 모델 불러오고 (cuda / cpu)
+    device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
+    regression_model = load_regression_model(model_name, regression_dir, device)
+    
+    #다이콤 파일 불러오기
+    image_basename = os.path.basename(dicom_dir).split('.')[0]
+    dcm_img = normalize_dicom_image(dicom_dir)
+
+    r_shape, dicom_dir, bmd_data
+
+    #라벨 선별하기
+    with open(txt_dir, 'r') as file:
+        lines = [line.strip() for line in file.readlines()]
+        parts = [line.strip().split() for line in lines]
+        
+        bbox1 = list(map(float, parts[0][:]))
+        bbox2 = list(map(float, parts[1][:]))
+        
+        if bbox1[1] < bbox2[1] and bbox2[0] == '0':
+            bbox = bbox2[1:]
+        else:
+            bbox = bbox1[1:]
+
+    #Detection모델에서 만든 bbox좌표대로 자르기
+    cropped_image = crop_dicom_image(dcm_img, bbox)        
+    regression_image = torch_image(cropped_image, 0)
+
+    regression_image = regression_image.to(device)
+
+    # Predict with the model
+    prediction = regression_model(regression_image)
+    bmd = (prediction[0][0])
+    bmd_cpu = bmd.detach().cpu().numpy() if bmd.is_cuda else bmd.detach().numpy()
 
     result = {
         'image_basename': image_basename,
-
-        'pred_bmd_score_mean': pred_bmd_score_mean,
-        'pred_bmd_score_weighted_mean': pred_bmd_score_weighted_mean,
-
-        'class_result_mean': class_result_mean,
-        'class_result_weighted_mean': class_result_weighted_mean,
-
-        'z_class': z_class,
-        'z_class_w': z_class_w,
-
-        'gt_bmd_list' : gt_bmd_list,
-        'gt_bmd_score' : gt_bmd_score,
-        'gt_z_class' : z_gt_class,
-
-
-        'bmd_list_cpu' : bmd_list_cpu
+        'pred_bmd_score': bmd_cpu
     }
     return result

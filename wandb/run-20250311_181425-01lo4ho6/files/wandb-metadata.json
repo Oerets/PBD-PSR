@@ -1,0 +1,41 @@
+{
+  "os": "Windows-10-10.0.26100-SP0",
+  "python": "CPython 3.8.20",
+  "startedAt": "2025-03-11T09:14:25.447066Z",
+  "program": "train.py",
+  "codePath": "train.py",
+  "git": {
+    "commit": "b16f5c47034fbbac0b782396a6b482a146d20499"
+  },
+  "email": "harrysho@gmail.com",
+  "root": "C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code",
+  "host": "DESKTOP-PL8KFSQ",
+  "executable": "C:\\Users\\hyunoh\\anaconda3\\envs\\spine\\python.exe",
+  "codePathLocal": "train.py",
+  "cpu_count": 8,
+  "cpu_count_logical": 16,
+  "gpu": "NVIDIA GeForce RTX 3090 Ti",
+  "gpu_count": 1,
+  "disk": {
+    "/": {
+      "total": "999356362752",
+      "used": "685734920192"
+    }
+  },
+  "memory": {
+    "total": "34270490624"
+  },
+  "cpu": {
+    "count": 8,
+    "countLogical": 16
+  },
+  "gpu_nvidia": [
+    {
+      "name": "NVIDIA GeForce RTX 3090 Ti",
+      "memoryTotal": "25757220864",
+      "cudaCores": 10752,
+      "architecture": "Ampere"
+    }
+  ],
+  "cudaVersion": "12.7"
+}

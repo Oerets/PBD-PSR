@@ -1,0 +1,140 @@
+10166370
+<class 'str'>
+L2
+True
+206    10166370
+Name: ID, dtype: object
+0.837
+4528494_8
+<class 'str'>
+L2
+True
+506    4528494_8
+Name: ID, dtype: object
+0.588
+3426043_1
+<class 'str'>
+L4
+True
+343    3426043_1
+Name: ID, dtype: object
+0.688
+4872132
+<class 'str'>
+L4
+True
+171    4872132
+Name: ID, dtype: object
+0.698
+2687138
+<class 'str'>
+L2
+True
+86    2687138
+Name: ID, dtype: object
+0.62
+4518544_3
+<class 'str'>
+L2
+True
+495    4518544_3
+Name: ID, dtype: object
+0.675
+1545994
+<class 'str'>
+L4
+True
+2    1545994
+Name: ID, dtype: object
+0.501
+4859935
+<class 'str'>
+L2
+True
+169    4859935
+Name: ID, dtype: object
+0.51
+3430498
+<class 'str'>
+L4
+True
+149    3430498
+Name: ID, dtype: object
+0.73
+4401405_4
+<class 'str'>
+L3
+True
+470    4401405_4
+Name: ID, dtype: object
+0.751
+1799516
+<class 'str'>
+L2
+True
+17    1799516
+Name: ID, dtype: object
+0.64
+4011419_1
+<class 'str'>
+L1
+True
+418    4011419_1
+Name: ID, dtype: object
+0.69
+4710030_4
+<class 'str'>
+L4
+True
+561    4710030_4
+Name: ID, dtype: object
+0.69
+10076922
+<class 'str'>
+L2
+True
+203    10076922
+Name: ID, dtype: object
+0.779
+4418687_1
+<class 'str'>
+L1
+True
+484    4418687_1
+Name: ID, dtype: object
+1.014
+2378723_3
+<class 'str'>
+L4
+True
+271    2378723_3
+Name: ID, dtype: object
+0.899
+Traceback (most recent call last):
+  File "train.py", line 127, in <module>
+    train_5_fold(dataset, batch_size=16, epochs=50, learning_rate=0.0001, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 49, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 85, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 317, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in collate
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in <listcomp>
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 142, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 223, in collate_numpy_array_fn
+    return collate([torch.as_tensor(b) for b in batch], collate_fn_map=collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 142, in collate
+    return collate_fn_map[elem_type](batch, collate_fn_map=collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 214, in collate_tensor_fn
+    return torch.stack(batch, 0, out=out)
+RuntimeError: stack expects each tensor to be equal size, but got [148, 219, 3] at entry 0 and [101, 159, 3] at entry 1

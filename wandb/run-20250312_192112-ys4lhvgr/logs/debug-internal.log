@@ -1,0 +1,7 @@
+{"time":"2025-03-12T19:21:12.814938+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250312_192112-ys4lhvgr\\logs\\debug-core.log"}
+{"time":"2025-03-12T19:21:12.9261913+09:00","level":"INFO","msg":"created new stream","id":"ys4lhvgr"}
+{"time":"2025-03-12T19:21:12.9261913+09:00","level":"INFO","msg":"handler: started","stream_id":"ys4lhvgr"}
+{"time":"2025-03-12T19:21:12.9261913+09:00","level":"INFO","msg":"sender: started","stream_id":"ys4lhvgr"}
+{"time":"2025-03-12T19:21:12.9261913+09:00","level":"INFO","msg":"stream: started","id":"ys4lhvgr"}
+{"time":"2025-03-12T19:21:12.9261913+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"ys4lhvgr"}
+{"time":"2025-03-12T19:21:13.2073516+09:00","level":"INFO","msg":"Starting system monitor"}

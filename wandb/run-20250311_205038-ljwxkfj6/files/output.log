@@ -1,0 +1,58 @@
+Epoch [1/80] | Train Loss: 0.0267 | Val Loss: 0.0169 | R2: 0.0157 | Pearson: 0.2168
+Epoch [2/80] | Train Loss: 0.0173 | Val Loss: 0.0356 | R2: -1.0884 | Pearson: 0.0274
+Epoch [3/80] | Train Loss: 0.0153 | Val Loss: 0.0202 | R2: -0.1801 | Pearson: -0.0313
+Epoch [4/80] | Train Loss: 0.0137 | Val Loss: 0.0516 | R2: -2.0371 | Pearson: 0.0059
+Epoch [5/80] | Train Loss: 0.0130 | Val Loss: 0.0744 | R2: -3.3648 | Pearson: 0.0966
+Epoch [6/80] | Train Loss: 0.0117 | Val Loss: 0.0577 | R2: -2.4084 | Pearson: 0.0171
+Epoch [7/80] | Train Loss: 0.0100 | Val Loss: 0.0189 | R2: -0.1155 | Pearson: 0.2598
+Epoch [8/80] | Train Loss: 0.0097 | Val Loss: 0.0231 | R2: -0.3689 | Pearson: 0.0245
+Epoch [9/80] | Train Loss: 0.0076 | Val Loss: 0.0407 | R2: -1.3545 | Pearson: 0.1246
+Epoch [10/80] | Train Loss: 0.0067 | Val Loss: 0.0326 | R2: -0.9081 | Pearson: -0.1704
+Epoch [11/80] | Train Loss: 0.0055 | Val Loss: 0.0678 | R2: -2.9733 | Pearson: 0.0477
+Epoch [12/80] | Train Loss: 0.0031 | Val Loss: 0.0527 | R2: -2.0908 | Pearson: 0.1826
+Epoch [13/80] | Train Loss: 0.0029 | Val Loss: 0.0634 | R2: -2.7097 | Pearson: 0.0167
+Epoch [14/80] | Train Loss: 0.0026 | Val Loss: 0.0171 | R2: 0.0061 | Pearson: 0.2769
+Epoch [15/80] | Train Loss: 0.0020 | Val Loss: 0.0266 | R2: -0.5492 | Pearson: -0.1146
+Epoch [16/80] | Train Loss: 0.0018 | Val Loss: 0.0294 | R2: -0.7096 | Pearson: 0.0819
+Epoch [17/80] | Train Loss: 0.0021 | Val Loss: 0.0387 | R2: -1.2487 | Pearson: 0.3945
+Epoch [18/80] | Train Loss: 0.0022 | Val Loss: 0.0279 | R2: -0.6348 | Pearson: 0.4357
+Epoch [19/80] | Train Loss: 0.0015 | Val Loss: 0.0208 | R2: -0.2176 | Pearson: 0.5474
+Epoch [20/80] | Train Loss: 0.0013 | Val Loss: 0.0251 | R2: -0.4881 | Pearson: 0.0399
+Epoch [21/80] | Train Loss: 0.0017 | Val Loss: 0.0283 | R2: -0.6590 | Pearson: 0.0028
+Epoch [22/80] | Train Loss: 0.0013 | Val Loss: 0.0189 | R2: -0.1135 | Pearson: 0.1448
+Epoch [23/80] | Train Loss: 0.0010 | Val Loss: 0.0542 | R2: -2.1729 | Pearson: 0.1071
+Epoch [24/80] | Train Loss: 0.0009 | Val Loss: 0.0130 | R2: 0.2381 | Pearson: 0.4940
+Epoch [25/80] | Train Loss: 0.0018 | Val Loss: 0.0125 | R2: 0.2687 | Pearson: 0.5205
+Epoch [26/80] | Train Loss: 0.0014 | Val Loss: 0.0169 | R2: 0.0021 | Pearson: 0.1300
+Epoch [27/80] | Train Loss: 0.0011 | Val Loss: 0.0603 | R2: -2.5038 | Pearson: 0.1387
+Epoch [28/80] | Train Loss: 0.0007 | Val Loss: 0.0345 | R2: -1.0340 | Pearson: 0.1562
+Epoch [29/80] | Train Loss: 0.0007 | Val Loss: 0.0425 | R2: -1.5050 | Pearson: 0.2004
+Epoch [30/80] | Train Loss: 0.0007 | Val Loss: 0.0458 | R2: -1.6836 | Pearson: 0.1216
+Epoch [31/80] | Train Loss: 0.0007 | Val Loss: 0.0133 | R2: 0.2172 | Pearson: 0.4703
+Epoch [32/80] | Train Loss: 0.0006 | Val Loss: 0.0448 | R2: -1.6371 | Pearson: -0.1125
+Epoch [33/80] | Train Loss: 0.0006 | Val Loss: 0.0612 | R2: -2.5636 | Pearson: 0.1140
+out of bound vert detected
+Traceback (most recent call last):
+  File "train.py", line 128, in <module>
+    train_5_fold(dataset, batch_size=16, epochs=80, learning_rate=0.0005, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 50, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 86, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 317, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in collate
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in <listcomp>
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 146, in collate
+    return collate_fn_map[collate_type](batch, collate_fn_map=collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 227, in collate_numpy_scalar_fn
+    return torch.as_tensor(batch)
+RuntimeError: Could not infer dtype of NoneType

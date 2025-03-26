@@ -1,0 +1,20 @@
+Epoch [1/80] | Train Loss: 0.0587 | Val Loss: 0.0907 | R2: -4.2882 | Pearson: -0.1343
+Epoch [2/80] | Train Loss: 0.0217 | Val Loss: 0.1216 | R2: -6.1226 | Pearson: 0.0471
+Epoch [3/80] | Train Loss: 0.0211 | Val Loss: 0.0930 | R2: -4.4379 | Pearson: -0.0234
+Epoch [4/80] | Train Loss: 0.0183 | Val Loss: 0.0631 | R2: -2.6833 | Pearson: -0.1323
+Epoch [5/80] | Train Loss: 0.0201 | Val Loss: 0.0640 | R2: -2.7570 | Pearson: -0.0226
+Epoch [6/80] | Train Loss: 0.0200 | Val Loss: 0.0715 | R2: -3.1819 | Pearson: -0.0642
+Traceback (most recent call last):
+  File "train.py", line 136, in <module>
+    train_5_fold(dataset, batch_size=32, epochs=80, learning_rate=0.00005, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 58, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 101, in train_one_epoch
+    loss.backward()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\_tensor.py", line 521, in backward
+    torch.autograd.backward(
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\autograd\__init__.py", line 289, in backward
+    _engine_run_backward(
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\autograd\graph.py", line 769, in _engine_run_backward
+    return Variable._execution_engine.run_backward(  # Calls into the C++ engine to run the backward pass
+KeyboardInterrupt

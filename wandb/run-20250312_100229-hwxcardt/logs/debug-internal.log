@@ -1,0 +1,16 @@
+{"time":"2025-03-12T10:02:29.4114306+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250312_100229-hwxcardt\\logs\\debug-core.log"}
+{"time":"2025-03-12T10:02:29.6543812+09:00","level":"INFO","msg":"created new stream","id":"hwxcardt"}
+{"time":"2025-03-12T10:02:29.6543812+09:00","level":"INFO","msg":"stream: started","id":"hwxcardt"}
+{"time":"2025-03-12T10:02:29.6543812+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"hwxcardt"}
+{"time":"2025-03-12T10:02:29.6543812+09:00","level":"INFO","msg":"handler: started","stream_id":"hwxcardt"}
+{"time":"2025-03-12T10:02:29.6543812+09:00","level":"INFO","msg":"sender: started","stream_id":"hwxcardt"}
+{"time":"2025-03-12T10:02:29.9872636+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-12T11:14:02.7807123+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-12T11:14:02.7817361+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-12T11:14:03.7876186+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading config.yaml","runtime_seconds":0.1866248,"progress":"836B/836B"}],"total_operations":1}}
+{"time":"2025-03-12T11:14:03.8691239+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-12T11:14:05.1418149+09:00","level":"INFO","msg":"stream: closing","id":"hwxcardt"}
+{"time":"2025-03-12T11:14:05.1418149+09:00","level":"INFO","msg":"handler: closed","stream_id":"hwxcardt"}
+{"time":"2025-03-12T11:14:05.1418149+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"hwxcardt"}
+{"time":"2025-03-12T11:14:05.1418149+09:00","level":"INFO","msg":"sender: closed","stream_id":"hwxcardt"}
+{"time":"2025-03-12T11:14:05.1418149+09:00","level":"INFO","msg":"stream: closed","id":"hwxcardt"}

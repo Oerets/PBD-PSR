@@ -1,0 +1,15 @@
+{"time":"2025-03-12T17:41:03.3401415+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250312_174103-hv8vlv62\\logs\\debug-core.log"}
+{"time":"2025-03-12T17:41:03.590288+09:00","level":"INFO","msg":"created new stream","id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:03.590288+09:00","level":"INFO","msg":"stream: started","id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:03.590288+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:03.590288+09:00","level":"INFO","msg":"sender: started","stream_id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:03.590288+09:00","level":"INFO","msg":"handler: started","stream_id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:03.8621918+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-12T17:41:07.4598078+09:00","level":"INFO","msg":"stream: closing","id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:07.4603459+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-12T17:41:07.4620276+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-12T17:41:08.1970873+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-12T17:41:08.4345059+09:00","level":"INFO","msg":"handler: closed","stream_id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:08.4345059+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:08.4345059+09:00","level":"INFO","msg":"sender: closed","stream_id":"hv8vlv62"}
+{"time":"2025-03-12T17:41:08.4345059+09:00","level":"INFO","msg":"stream: closed","id":"hv8vlv62"}

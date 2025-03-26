@@ -1,0 +1,82 @@
+Epoch [1/80] | Train Loss: 0.0436 | Val Loss: 0.0394 | R2: -1.3369 | Pearson: 0.1426
+Epoch [2/80] | Train Loss: 0.0156 | Val Loss: 0.0154 | R2: 0.0928 | Pearson: 0.3453
+Epoch [3/80] | Train Loss: 0.0130 | Val Loss: 0.0155 | R2: 0.0889 | Pearson: 0.4503
+Epoch [4/80] | Train Loss: 0.0111 | Val Loss: 0.0207 | R2: -0.2165 | Pearson: 0.2806
+Epoch [5/80] | Train Loss: 0.0092 | Val Loss: 0.0175 | R2: -0.0334 | Pearson: 0.4460
+Epoch [6/80] | Train Loss: 0.0073 | Val Loss: 0.0220 | R2: -0.2948 | Pearson: 0.3405
+Epoch [7/80] | Train Loss: 0.0081 | Val Loss: 0.0164 | R2: 0.0274 | Pearson: 0.4971
+Epoch [8/80] | Train Loss: 0.0055 | Val Loss: 0.0248 | R2: -0.4312 | Pearson: 0.4682
+Epoch [9/80] | Train Loss: 0.0042 | Val Loss: 0.0197 | R2: -0.1592 | Pearson: 0.4912
+Epoch [10/80] | Train Loss: 0.0034 | Val Loss: 0.0153 | R2: 0.0951 | Pearson: 0.4530
+Epoch [11/80] | Train Loss: 0.0031 | Val Loss: 0.0121 | R2: 0.2892 | Pearson: 0.5632
+Epoch [12/80] | Train Loss: 0.0032 | Val Loss: 0.0140 | R2: 0.1906 | Pearson: 0.4897
+Epoch [13/80] | Train Loss: 0.0027 | Val Loss: 0.0163 | R2: 0.0446 | Pearson: 0.5158
+Epoch [14/80] | Train Loss: 0.0023 | Val Loss: 0.0148 | R2: 0.1357 | Pearson: 0.5374
+Epoch [15/80] | Train Loss: 0.0022 | Val Loss: 0.0184 | R2: -0.0792 | Pearson: 0.5246
+Epoch [16/80] | Train Loss: 0.0023 | Val Loss: 0.0144 | R2: 0.1472 | Pearson: 0.5174
+Epoch [17/80] | Train Loss: 0.0022 | Val Loss: 0.0189 | R2: -0.1081 | Pearson: 0.5395
+Epoch [18/80] | Train Loss: 0.0022 | Val Loss: 0.0237 | R2: -0.3620 | Pearson: 0.3578
+Epoch [19/80] | Train Loss: 0.0022 | Val Loss: 0.0141 | R2: 0.1940 | Pearson: 0.5577
+Epoch [20/80] | Train Loss: 0.0018 | Val Loss: 0.0137 | R2: 0.1905 | Pearson: 0.5292
+Epoch [21/80] | Train Loss: 0.0018 | Val Loss: 0.0157 | R2: 0.0824 | Pearson: 0.5050
+Epoch [22/80] | Train Loss: 0.0015 | Val Loss: 0.0127 | R2: 0.2502 | Pearson: 0.5293
+Epoch [23/80] | Train Loss: 0.0015 | Val Loss: 0.0203 | R2: -0.1845 | Pearson: 0.5145
+Epoch [24/80] | Train Loss: 0.0016 | Val Loss: 0.0139 | R2: 0.1890 | Pearson: 0.5513
+Epoch [25/80] | Train Loss: 0.0016 | Val Loss: 0.0132 | R2: 0.2244 | Pearson: 0.5449
+Epoch [26/80] | Train Loss: 0.0020 | Val Loss: 0.0125 | R2: 0.2763 | Pearson: 0.5398
+Epoch [27/80] | Train Loss: 0.0015 | Val Loss: 0.0129 | R2: 0.2360 | Pearson: 0.5461
+Epoch [28/80] | Train Loss: 0.0013 | Val Loss: 0.0129 | R2: 0.2348 | Pearson: 0.4959
+Epoch [29/80] | Train Loss: 0.0013 | Val Loss: 0.0122 | R2: 0.2821 | Pearson: 0.5328
+Epoch [30/80] | Train Loss: 0.0017 | Val Loss: 0.0134 | R2: 0.2088 | Pearson: 0.4986
+Epoch [31/80] | Train Loss: 0.0014 | Val Loss: 0.0138 | R2: 0.2021 | Pearson: 0.5389
+Epoch [32/80] | Train Loss: 0.0013 | Val Loss: 0.0273 | R2: -0.6026 | Pearson: 0.4410
+Epoch [33/80] | Train Loss: 0.0012 | Val Loss: 0.0118 | R2: 0.3164 | Pearson: 0.5683
+Epoch [34/80] | Train Loss: 0.0010 | Val Loss: 0.0187 | R2: -0.0964 | Pearson: 0.4185
+Epoch [35/80] | Train Loss: 0.0010 | Val Loss: 0.0151 | R2: 0.1139 | Pearson: 0.5747
+Epoch [36/80] | Train Loss: 0.0011 | Val Loss: 0.0159 | R2: 0.0607 | Pearson: 0.5395
+Epoch [37/80] | Train Loss: 0.0011 | Val Loss: 0.0191 | R2: -0.1282 | Pearson: 0.5078
+Epoch [38/80] | Train Loss: 0.0009 | Val Loss: 0.0174 | R2: -0.0124 | Pearson: 0.5072
+Epoch [39/80] | Train Loss: 0.0010 | Val Loss: 0.0120 | R2: 0.2981 | Pearson: 0.5850
+Epoch [40/80] | Train Loss: 0.0010 | Val Loss: 0.0127 | R2: 0.2635 | Pearson: 0.5802
+Epoch [41/80] | Train Loss: 0.0010 | Val Loss: 0.0113 | R2: 0.3300 | Pearson: 0.5823
+Epoch [42/80] | Train Loss: 0.0009 | Val Loss: 0.0122 | R2: 0.2830 | Pearson: 0.5611
+Epoch [43/80] | Train Loss: 0.0010 | Val Loss: 0.0125 | R2: 0.2709 | Pearson: 0.5702
+Epoch [44/80] | Train Loss: 0.0010 | Val Loss: 0.0114 | R2: 0.3429 | Pearson: 0.5891
+Epoch [45/80] | Train Loss: 0.0008 | Val Loss: 0.0111 | R2: 0.3427 | Pearson: 0.5897
+Epoch [46/80] | Train Loss: 0.0009 | Val Loss: 0.0129 | R2: 0.2462 | Pearson: 0.5637
+Epoch [47/80] | Train Loss: 0.0007 | Val Loss: 0.0116 | R2: 0.3263 | Pearson: 0.5770
+Epoch [48/80] | Train Loss: 0.0011 | Val Loss: 0.0122 | R2: 0.2812 | Pearson: 0.5337
+Epoch [49/80] | Train Loss: 0.0012 | Val Loss: 0.0137 | R2: 0.2029 | Pearson: 0.5502
+Epoch [50/80] | Train Loss: 0.0010 | Val Loss: 0.0121 | R2: 0.2899 | Pearson: 0.5830
+Epoch [51/80] | Train Loss: 0.0007 | Val Loss: 0.0113 | R2: 0.3580 | Pearson: 0.6022
+Epoch [52/80] | Train Loss: 0.0008 | Val Loss: 0.0143 | R2: 0.1594 | Pearson: 0.5744
+Epoch [53/80] | Train Loss: 0.0007 | Val Loss: 0.0146 | R2: 0.1352 | Pearson: 0.5691
+Epoch [54/80] | Train Loss: 0.0006 | Val Loss: 0.0116 | R2: 0.3160 | Pearson: 0.5635
+Traceback (most recent call last):
+  File "train.py", line 128, in <module>
+    train_5_fold(dataset, batch_size=16, epochs=80, learning_rate=0.00001, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 50, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 86, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 213, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 192, in process_image
+    image = self.transform(image=image)["image"]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\albumentations\core\composition.py", line 349, in __call__
+    data = t(**data)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\albumentations\core\transforms_interface.py", line 125, in __call__
+    return self.apply_with_params(params, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\albumentations\core\transforms_interface.py", line 144, in apply_with_params
+    result = target_function(np.require(arg, requirements=["C_CONTIGUOUS"]), **params)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\numpy\core\_asarray.py", line 130, in require
+    arr = array(a, dtype=dtype, order=order, copy=False, subok=subok)
+KeyboardInterrupt

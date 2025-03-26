@@ -1,0 +1,7 @@
+{"time":"2025-03-11T17:19:37.7658156+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250311_171937-yl2gba6m\\logs\\debug-core.log"}
+{"time":"2025-03-11T17:19:37.8723843+09:00","level":"INFO","msg":"created new stream","id":"yl2gba6m"}
+{"time":"2025-03-11T17:19:37.8729253+09:00","level":"INFO","msg":"handler: started","stream_id":"yl2gba6m"}
+{"time":"2025-03-11T17:19:37.8729253+09:00","level":"INFO","msg":"sender: started","stream_id":"yl2gba6m"}
+{"time":"2025-03-11T17:19:37.8729253+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"yl2gba6m"}
+{"time":"2025-03-11T17:19:37.8729253+09:00","level":"INFO","msg":"stream: started","id":"yl2gba6m"}
+{"time":"2025-03-11T17:19:38.1596783+09:00","level":"INFO","msg":"Starting system monitor"}

@@ -1,0 +1,14 @@
+Fold 4 | Epoch [1/80] | Train Loss: 0.0221 | Val Loss: 0.0256 | R2: -0.3156 | Pearson: 0.1453
+Fold 4 | Epoch [2/80] | Train Loss: 0.0174 | Val Loss: 0.0239 | R2: -0.2318 | Pearson: 0.1234
+Fold 4 | Epoch [3/80] | Train Loss: 0.0170 | Val Loss: 0.0223 | R2: -0.1491 | Pearson: -0.0288
+Process Process-4:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 47, in train_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 81, in train_one_epoch
+    total_loss += loss.item()
+KeyboardInterrupt

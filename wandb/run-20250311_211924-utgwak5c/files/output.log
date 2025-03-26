@@ -1,0 +1,29 @@
+Epoch [1/80] | Train Loss: 0.0275 | Val Loss: 0.0624 | R2: -2.6383 | Pearson: -0.0763
+Epoch [2/80] | Train Loss: 0.0156 | Val Loss: 0.0973 | R2: -4.6879 | Pearson: -0.1115
+Epoch [3/80] | Train Loss: 0.0143 | Val Loss: 0.0328 | R2: -0.9294 | Pearson: -0.0446
+Epoch [4/80] | Train Loss: 0.0108 | Val Loss: 0.0934 | R2: -4.4956 | Pearson: 0.1012
+Traceback (most recent call last):
+  File "train.py", line 132, in <module>
+    train_5_fold(dataset, batch_size=32, epochs=80, learning_rate=0.0001, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 54, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 90, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 214, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 184, in process_image
+    image = np.repeat(image[:, :, None], 3, axis=-1)
+  File "<__array_function__ internals>", line 200, in repeat
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\numpy\core\fromnumeric.py", line 479, in repeat
+    return _wrapfunc(a, 'repeat', repeats, axis=axis)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\numpy\core\fromnumeric.py", line 57, in _wrapfunc
+    return bound(*args, **kwds)
+KeyboardInterrupt

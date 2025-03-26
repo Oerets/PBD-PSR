@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "train.py", line 127, in <module>
+    train_5_fold(dataset, batch_size=16, epochs=50, learning_rate=0.0001, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 49, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 89, in train_one_epoch
+    outputs = model(images)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 268, in _forward_impl
+    x = self.conv1(x)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\conv.py", line 458, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\conv.py", line 454, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+RuntimeError: Given groups=1, weight of size [64, 1, 7, 7], expected input[16, 3, 224, 224] to have 1 channels, but got 3 channels instead

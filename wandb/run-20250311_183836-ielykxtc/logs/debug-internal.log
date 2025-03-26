@@ -1,0 +1,15 @@
+{"time":"2025-03-11T18:38:36.2596893+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250311_183836-ielykxtc\\logs\\debug-core.log"}
+{"time":"2025-03-11T18:38:36.3674898+09:00","level":"INFO","msg":"created new stream","id":"ielykxtc"}
+{"time":"2025-03-11T18:38:36.3674898+09:00","level":"INFO","msg":"handler: started","stream_id":"ielykxtc"}
+{"time":"2025-03-11T18:38:36.3674898+09:00","level":"INFO","msg":"stream: started","id":"ielykxtc"}
+{"time":"2025-03-11T18:38:36.3674898+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"ielykxtc"}
+{"time":"2025-03-11T18:38:36.3674898+09:00","level":"INFO","msg":"sender: started","stream_id":"ielykxtc"}
+{"time":"2025-03-11T18:38:36.7244929+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-11T18:38:36.8578694+09:00","level":"INFO","msg":"stream: closing","id":"ielykxtc"}
+{"time":"2025-03-11T18:38:36.8578694+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-11T18:38:36.8584449+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-11T18:38:38.1206848+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-11T18:38:38.3658116+09:00","level":"INFO","msg":"handler: closed","stream_id":"ielykxtc"}
+{"time":"2025-03-11T18:38:38.3658116+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"ielykxtc"}
+{"time":"2025-03-11T18:38:38.3658116+09:00","level":"INFO","msg":"sender: closed","stream_id":"ielykxtc"}
+{"time":"2025-03-11T18:38:38.3658116+09:00","level":"INFO","msg":"stream: closed","id":"ielykxtc"}

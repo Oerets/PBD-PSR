@@ -1,0 +1,23 @@
+2025-03-11 17:23:53,015 INFO    MainThread:21036 [wandb_setup.py:_flush():68] Current SDK version is 0.19.2
+2025-03-11 17:23:53,015 INFO    MainThread:21036 [wandb_setup.py:_flush():68] Configure stats pid to 21036
+2025-03-11 17:23:53,015 INFO    MainThread:21036 [wandb_setup.py:_flush():68] Loading settings from C:\Users\hyunoh\.config\wandb\settings
+2025-03-11 17:23:53,015 INFO    MainThread:21036 [wandb_setup.py:_flush():68] Loading settings from C:\Users\hyunoh\Documents\Codes\BMD_code\wandb\settings
+2025-03-11 17:23:53,015 INFO    MainThread:21036 [wandb_setup.py:_flush():68] Loading settings from environment variables
+2025-03-11 17:23:53,016 INFO    MainThread:21036 [wandb_init.py:_log_setup():523] Logging user logs to C:\Users\hyunoh\Documents\Codes\BMD_code\wandb\run-20250311_172353-9s65qf6r\logs\debug.log
+2025-03-11 17:23:53,016 INFO    MainThread:21036 [wandb_init.py:_log_setup():524] Logging internal logs to C:\Users\hyunoh\Documents\Codes\BMD_code\wandb\run-20250311_172353-9s65qf6r\logs\debug-internal.log
+2025-03-11 17:23:53,016 INFO    MainThread:21036 [wandb_init.py:init():641] calling init triggers
+2025-03-11 17:23:53,016 INFO    MainThread:21036 [wandb_init.py:init():647] wandb.init called with sweep_config: {}
+config: {'learning_rate': 0.0001, 'epochs': 50, 'batch_size': 16, 'optimizer': 'AdamW', 'scheduler': 'CosineAnnealingLR'}
+2025-03-11 17:23:53,016 INFO    MainThread:21036 [wandb_init.py:init():674] starting backend
+2025-03-11 17:23:53,238 INFO    MainThread:21036 [wandb_init.py:init():678] sending inform_init request
+2025-03-11 17:23:53,252 INFO    MainThread:21036 [backend.py:_multiprocessing_setup():104] multiprocessing start_methods=spawn, using: spawn
+2025-03-11 17:23:53,253 INFO    MainThread:21036 [wandb_init.py:init():693] backend started and connected
+2025-03-11 17:23:53,254 INFO    MainThread:21036 [wandb_init.py:init():786] updated telemetry
+2025-03-11 17:23:53,282 INFO    MainThread:21036 [wandb_init.py:init():818] communicating run to backend with 90.0 second timeout
+2025-03-11 17:23:53,623 INFO    MainThread:21036 [wandb_init.py:init():868] starting run threads in backend
+2025-03-11 17:23:53,760 INFO    MainThread:21036 [wandb_run.py:_console_start():2415] atexit reg
+2025-03-11 17:23:53,760 INFO    MainThread:21036 [wandb_run.py:_redirect():2265] redirect: wrap_raw
+2025-03-11 17:23:53,760 INFO    MainThread:21036 [wandb_run.py:_redirect():2330] Wrapping output streams.
+2025-03-11 17:23:53,760 INFO    MainThread:21036 [wandb_run.py:_redirect():2355] Redirects installed.
+2025-03-11 17:23:53,763 INFO    MainThread:21036 [wandb_init.py:init():910] run started, returning control to user process
+2025-03-11 17:23:53,785 WARNING MsgRouterThr:21036 [router.py:message_loop():75] message_loop has been closed

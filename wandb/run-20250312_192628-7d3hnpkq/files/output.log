@@ -1,0 +1,84 @@
+Fold 2 | Epoch [1/80] | Train Loss: 0.0229 | Val Loss: 0.0183 | R2: -0.0604 | Pearson: 0.0178
+Fold 2 | Epoch [2/80] | Train Loss: 0.0183 | Val Loss: 0.0171 | R2: 0.0077 | Pearson: 0.0977
+Fold 2 | Epoch [3/80] | Train Loss: 0.0168 | Val Loss: 0.0262 | R2: -0.5083 | Pearson: 0.0935
+Fold 2 | Epoch [4/80] | Train Loss: 0.0165 | Val Loss: 0.0178 | R2: -0.0287 | Pearson: 0.4158
+Fold 2 | Epoch [5/80] | Train Loss: 0.0144 | Val Loss: 0.0164 | R2: 0.0460 | Pearson: 0.4202
+Fold 2 | Epoch [6/80] | Train Loss: 0.0135 | Val Loss: 0.0204 | R2: -0.1828 | Pearson: -0.0086
+Fold 2 | Epoch [7/80] | Train Loss: 0.0121 | Val Loss: 0.0199 | R2: -0.1494 | Pearson: 0.0906
+Fold 2 | Epoch [8/80] | Train Loss: 0.0109 | Val Loss: 0.0207 | R2: -0.2038 | Pearson: 0.3978
+Fold 2 | Epoch [9/80] | Train Loss: 0.0096 | Val Loss: 0.0116 | R2: 0.3317 | Pearson: 0.6015
+Fold 2 | Epoch [10/80] | Train Loss: 0.0082 | Val Loss: 0.0172 | R2: -0.0021 | Pearson: 0.3456
+Fold 2 | Epoch [11/80] | Train Loss: 0.0070 | Val Loss: 0.0117 | R2: 0.3198 | Pearson: 0.6399
+Fold 2 | Epoch [12/80] | Train Loss: 0.0061 | Val Loss: 0.0152 | R2: 0.1182 | Pearson: 0.3582
+Fold 2 | Epoch [13/80] | Train Loss: 0.0053 | Val Loss: 0.0342 | R2: -0.9716 | Pearson: 0.1819
+Fold 2 | Epoch [14/80] | Train Loss: 0.0038 | Val Loss: 0.0206 | R2: -0.1931 | Pearson: 0.4466
+Fold 2 | Epoch [15/80] | Train Loss: 0.0034 | Val Loss: 0.0254 | R2: -0.4758 | Pearson: -0.1731
+Fold 2 | Epoch [16/80] | Train Loss: 0.0029 | Val Loss: 0.0820 | R2: -3.7508 | Pearson: 0.1979
+Fold 2 | Epoch [17/80] | Train Loss: 0.0025 | Val Loss: 0.0147 | R2: 0.1474 | Pearson: 0.5276
+Fold 2 | Epoch [18/80] | Train Loss: 0.0021 | Val Loss: 0.0166 | R2: 0.0421 | Pearson: 0.5218
+Fold 2 | Epoch [19/80] | Train Loss: 0.0021 | Val Loss: 0.0190 | R2: -0.0951 | Pearson: 0.2473
+Fold 2 | Epoch [20/80] | Train Loss: 0.0021 | Val Loss: 0.0104 | R2: 0.4008 | Pearson: 0.7222
+Fold 2 | Epoch [21/80] | Train Loss: 0.0017 | Val Loss: 0.0164 | R2: 0.0499 | Pearson: 0.2380
+Fold 2 | Epoch [22/80] | Train Loss: 0.0016 | Val Loss: 0.0209 | R2: -0.2054 | Pearson: 0.5005
+Fold 2 | Epoch [23/80] | Train Loss: 0.0017 | Val Loss: 0.0074 | R2: 0.5708 | Pearson: 0.7608
+Fold 2 | Epoch [24/80] | Train Loss: 0.0016 | Val Loss: 0.0120 | R2: 0.3038 | Pearson: 0.5619
+Fold 2 | Epoch [25/80] | Train Loss: 0.0016 | Val Loss: 0.0353 | R2: -1.0494 | Pearson: 0.3896
+Fold 2 | Epoch [26/80] | Train Loss: 0.0014 | Val Loss: 0.0172 | R2: 0.0037 | Pearson: 0.4419
+Fold 2 | Epoch [27/80] | Train Loss: 0.0011 | Val Loss: 0.0420 | R2: -1.4355 | Pearson: -0.0676
+Fold 2 | Epoch [28/80] | Train Loss: 0.0013 | Val Loss: 0.0072 | R2: 0.5817 | Pearson: 0.7684
+Fold 2 | Epoch [29/80] | Train Loss: 0.0012 | Val Loss: 0.0263 | R2: -0.5207 | Pearson: 0.4241
+Fold 2 | Epoch [30/80] | Train Loss: 0.0009 | Val Loss: 0.0076 | R2: 0.5568 | Pearson: 0.7626
+Fold 2 | Epoch [31/80] | Train Loss: 0.0009 | Val Loss: 0.0073 | R2: 0.5741 | Pearson: 0.7653
+Fold 2 | Epoch [32/80] | Train Loss: 0.0009 | Val Loss: 0.0086 | R2: 0.5029 | Pearson: 0.7468
+Fold 2 | Epoch [33/80] | Train Loss: 0.0009 | Val Loss: 0.0071 | R2: 0.5914 | Pearson: 0.7755
+Fold 2 | Epoch [34/80] | Train Loss: 0.0006 | Val Loss: 0.0150 | R2: 0.1322 | Pearson: 0.4407
+Fold 2 | Epoch [35/80] | Train Loss: 0.0007 | Val Loss: 0.0072 | R2: 0.5877 | Pearson: 0.7728
+Fold 2 | Epoch [36/80] | Train Loss: 0.0006 | Val Loss: 0.0079 | R2: 0.5420 | Pearson: 0.7520
+Fold 2 | Epoch [37/80] | Train Loss: 0.0007 | Val Loss: 0.0074 | R2: 0.5703 | Pearson: 0.7600
+Fold 2 | Epoch [38/80] | Train Loss: 0.0005 | Val Loss: 0.0071 | R2: 0.5844 | Pearson: 0.7724
+Fold 2 | Epoch [39/80] | Train Loss: 0.0004 | Val Loss: 0.0071 | R2: 0.5873 | Pearson: 0.7816
+Fold 2 | Epoch [40/80] | Train Loss: 0.0004 | Val Loss: 0.0084 | R2: 0.5100 | Pearson: 0.7292
+Fold 2 | Epoch [41/80] | Train Loss: 0.0004 | Val Loss: 0.0071 | R2: 0.5882 | Pearson: 0.7749
+Fold 2 | Epoch [42/80] | Train Loss: 0.0004 | Val Loss: 0.0077 | R2: 0.5531 | Pearson: 0.7540
+Fold 2 | Epoch [43/80] | Train Loss: 0.0004 | Val Loss: 0.0186 | R2: -0.0793 | Pearson: 0.4545
+Fold 2 | Epoch [44/80] | Train Loss: 0.0003 | Val Loss: 0.0080 | R2: 0.5413 | Pearson: 0.7464
+Fold 2 | Epoch [45/80] | Train Loss: 0.0003 | Val Loss: 0.0112 | R2: 0.3608 | Pearson: 0.6578
+Fold 2 | Epoch [46/80] | Train Loss: 0.0003 | Val Loss: 0.0071 | R2: 0.5848 | Pearson: 0.7742
+Fold 2 | Epoch [47/80] | Train Loss: 0.0003 | Val Loss: 0.0069 | R2: 0.6024 | Pearson: 0.7831
+Fold 2 | Epoch [48/80] | Train Loss: 0.0003 | Val Loss: 0.0069 | R2: 0.6024 | Pearson: 0.7852
+Fold 2 | Epoch [49/80] | Train Loss: 0.0002 | Val Loss: 0.0070 | R2: 0.5952 | Pearson: 0.7787
+Fold 2 | Epoch [50/80] | Train Loss: 0.0002 | Val Loss: 0.0071 | R2: 0.5915 | Pearson: 0.7752
+Fold 2 | Epoch [51/80] | Train Loss: 0.0002 | Val Loss: 0.0071 | R2: 0.5926 | Pearson: 0.7774
+Fold 2 | Epoch [52/80] | Train Loss: 0.0002 | Val Loss: 0.0072 | R2: 0.5842 | Pearson: 0.7777
+Fold 2 | Epoch [53/80] | Train Loss: 0.0002 | Val Loss: 0.0071 | R2: 0.5889 | Pearson: 0.7738
+Fold 2 | Epoch [54/80] | Train Loss: 0.0002 | Val Loss: 0.0070 | R2: 0.5949 | Pearson: 0.7829
+Fold 2 | Epoch [55/80] | Train Loss: 0.0001 | Val Loss: 0.0071 | R2: 0.5922 | Pearson: 0.7783
+Fold 2 | Epoch [56/80] | Train Loss: 0.0001 | Val Loss: 0.0070 | R2: 0.5906 | Pearson: 0.7761
+Fold 2 | Epoch [57/80] | Train Loss: 0.0001 | Val Loss: 0.0070 | R2: 0.5913 | Pearson: 0.7793
+Fold 2 | Epoch [58/80] | Train Loss: 0.0001 | Val Loss: 0.0069 | R2: 0.5999 | Pearson: 0.7835
+Fold 2 | Epoch [59/80] | Train Loss: 0.0001 | Val Loss: 0.0068 | R2: 0.6046 | Pearson: 0.7851
+Process Process-2:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 47, in train_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 71, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 213, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 176, in process_image
+    image = np.load(img_path)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\numpy\lib\npyio.py", line 405, in load
+    fid = stack.enter_context(open(os_fspath(file), "rb"))
+FileNotFoundError: [Errno 2] No such file or directory: 'data/dxa_data/gt_npy_box\\1540161_6_L2.npy'

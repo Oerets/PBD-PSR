@@ -1,0 +1,15 @@
+{"time":"2025-03-12T17:41:22.2794426+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250312_174122-eeshmes1\\logs\\debug-core.log"}
+{"time":"2025-03-12T17:41:22.3867261+09:00","level":"INFO","msg":"created new stream","id":"eeshmes1"}
+{"time":"2025-03-12T17:41:22.3872722+09:00","level":"INFO","msg":"handler: started","stream_id":"eeshmes1"}
+{"time":"2025-03-12T17:41:22.3872722+09:00","level":"INFO","msg":"stream: started","id":"eeshmes1"}
+{"time":"2025-03-12T17:41:22.3872722+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"eeshmes1"}
+{"time":"2025-03-12T17:41:22.3872722+09:00","level":"INFO","msg":"sender: started","stream_id":"eeshmes1"}
+{"time":"2025-03-12T17:41:22.72213+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-12T17:41:37.0375417+09:00","level":"INFO","msg":"stream: closing","id":"eeshmes1"}
+{"time":"2025-03-12T17:41:37.0375417+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-12T17:41:37.0381523+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-12T17:41:37.7985623+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-12T17:41:38.0445315+09:00","level":"INFO","msg":"handler: closed","stream_id":"eeshmes1"}
+{"time":"2025-03-12T17:41:38.0445315+09:00","level":"INFO","msg":"sender: closed","stream_id":"eeshmes1"}
+{"time":"2025-03-12T17:41:38.0445315+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"eeshmes1"}
+{"time":"2025-03-12T17:41:38.0445315+09:00","level":"INFO","msg":"stream: closed","id":"eeshmes1"}

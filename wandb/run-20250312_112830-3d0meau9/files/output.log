@@ -1,0 +1,61 @@
+Fold 2 | Epoch [1/150] | Train Loss: 0.0220 | Val Loss: 0.0177 | R2: -0.0229 | Pearson: 0.0845
+Fold 2 | Epoch [2/150] | Train Loss: 0.0191 | Val Loss: 0.0195 | R2: -0.1318 | Pearson: 0.2530
+Fold 2 | Epoch [3/150] | Train Loss: 0.0179 | Val Loss: 0.0237 | R2: -0.3747 | Pearson: 0.2276
+Fold 2 | Epoch [4/150] | Train Loss: 0.0163 | Val Loss: 0.0155 | R2: 0.0996 | Pearson: 0.3245
+Fold 2 | Epoch [5/150] | Train Loss: 0.0149 | Val Loss: 0.0162 | R2: 0.0606 | Pearson: 0.3454
+Fold 2 | Epoch [6/150] | Train Loss: 0.0130 | Val Loss: 0.0204 | R2: -0.1822 | Pearson: 0.3421
+Fold 2 | Epoch [7/150] | Train Loss: 0.0109 | Val Loss: 0.0242 | R2: -0.4020 | Pearson: 0.3327
+Fold 2 | Epoch [8/150] | Train Loss: 0.0090 | Val Loss: 0.0231 | R2: -0.3369 | Pearson: 0.3162
+Fold 2 | Epoch [9/150] | Train Loss: 0.0064 | Val Loss: 0.0268 | R2: -0.5538 | Pearson: 0.3039
+Fold 2 | Epoch [10/150] | Train Loss: 0.0041 | Val Loss: 0.0311 | R2: -0.8024 | Pearson: 0.2835
+Fold 2 | Epoch [11/150] | Train Loss: 0.0031 | Val Loss: 0.0274 | R2: -0.5900 | Pearson: 0.3321
+Fold 2 | Epoch [12/150] | Train Loss: 0.0020 | Val Loss: 0.0231 | R2: -0.3362 | Pearson: 0.3277
+Fold 2 | Epoch [13/150] | Train Loss: 0.0019 | Val Loss: 0.0281 | R2: -0.6307 | Pearson: 0.3131
+Fold 2 | Epoch [14/150] | Train Loss: 0.0014 | Val Loss: 0.0286 | R2: -0.6554 | Pearson: 0.2772
+Fold 2 | Epoch [15/150] | Train Loss: 0.0016 | Val Loss: 0.0283 | R2: -0.6388 | Pearson: 0.3077
+Fold 2 | Epoch [16/150] | Train Loss: 0.0014 | Val Loss: 0.0311 | R2: -0.7998 | Pearson: 0.3250
+Fold 2 | Epoch [17/150] | Train Loss: 0.0012 | Val Loss: 0.0302 | R2: -0.7479 | Pearson: 0.3354
+Fold 2 | Epoch [18/150] | Train Loss: 0.0011 | Val Loss: 0.0399 | R2: -1.3116 | Pearson: 0.2992
+Fold 2 | Epoch [19/150] | Train Loss: 0.0011 | Val Loss: 0.0362 | R2: -1.0955 | Pearson: 0.3376
+Fold 2 | Epoch [20/150] | Train Loss: 0.0011 | Val Loss: 0.0368 | R2: -1.1341 | Pearson: 0.3261
+Fold 2 | Epoch [21/150] | Train Loss: 0.0010 | Val Loss: 0.0327 | R2: -0.8975 | Pearson: 0.3210
+Fold 2 | Epoch [22/150] | Train Loss: 0.0009 | Val Loss: 0.0434 | R2: -1.5180 | Pearson: 0.2835
+Fold 2 | Epoch [23/150] | Train Loss: 0.0010 | Val Loss: 0.0281 | R2: -0.6271 | Pearson: 0.3184
+Fold 2 | Epoch [24/150] | Train Loss: 0.0009 | Val Loss: 0.0191 | R2: -0.1062 | Pearson: 0.3436
+Fold 2 | Epoch [25/150] | Train Loss: 0.0007 | Val Loss: 0.0272 | R2: -0.5736 | Pearson: 0.3327
+Fold 2 | Epoch [26/150] | Train Loss: 0.0008 | Val Loss: 0.0204 | R2: -0.1808 | Pearson: 0.3882
+Fold 2 | Epoch [27/150] | Train Loss: 0.0008 | Val Loss: 0.0198 | R2: -0.1482 | Pearson: 0.3327
+Fold 2 | Epoch [28/150] | Train Loss: 0.0007 | Val Loss: 0.0304 | R2: -0.7635 | Pearson: 0.3501
+Fold 2 | Epoch [29/150] | Train Loss: 0.0007 | Val Loss: 0.0244 | R2: -0.4135 | Pearson: 0.3734
+Fold 2 | Epoch [30/150] | Train Loss: 0.0007 | Val Loss: 0.0351 | R2: -1.0315 | Pearson: 0.3173
+Fold 2 | Epoch [31/150] | Train Loss: 0.0007 | Val Loss: 0.0221 | R2: -0.2804 | Pearson: 0.3385
+Fold 2 | Epoch [32/150] | Train Loss: 0.0006 | Val Loss: 0.0269 | R2: -0.5610 | Pearson: 0.3416
+Fold 2 | Epoch [33/150] | Train Loss: 0.0006 | Val Loss: 0.0281 | R2: -0.6270 | Pearson: 0.3509
+Fold 2 | Epoch [34/150] | Train Loss: 0.0006 | Val Loss: 0.0204 | R2: -0.1830 | Pearson: 0.3674
+Fold 2 | Epoch [35/150] | Train Loss: 0.0005 | Val Loss: 0.0251 | R2: -0.4534 | Pearson: 0.3399
+out of bound vert detected
+Process Process-2:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 46, in train_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 70, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 55, in fetch
+    return self.collate_fn(data)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 317, in default_collate
+    return collate(batch, collate_fn_map=default_collate_fn_map)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in collate
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 174, in <listcomp>
+    return [collate(samples, collate_fn_map=collate_fn_map) for samples in transposed]  # Backwards compatibility.
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\collate.py", line 192, in collate
+    raise TypeError(default_collate_err_msg_format.format(elem_type))
+TypeError: default_collate: batch must contain tensors, numpy arrays, numbers, dicts or lists; found <class 'NoneType'>

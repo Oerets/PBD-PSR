@@ -1,0 +1,108 @@
+Epoch [1/80] | Train Loss: 0.0653 | Val Loss: 0.2188 | R2: -11.8193 | Pearson: 0.0380
+Epoch [2/80] | Train Loss: 0.0167 | Val Loss: 0.1640 | R2: -8.5968 | Pearson: -0.0396
+Epoch [3/80] | Train Loss: 0.0155 | Val Loss: 0.0737 | R2: -3.3275 | Pearson: 0.0894
+Epoch [4/80] | Train Loss: 0.0158 | Val Loss: 0.0280 | R2: -0.6488 | Pearson: 0.2108
+Epoch [5/80] | Train Loss: 0.0148 | Val Loss: 0.0888 | R2: -4.2014 | Pearson: -0.1201
+Epoch [6/80] | Train Loss: 0.0127 | Val Loss: 0.0458 | R2: -1.6737 | Pearson: 0.0715
+Epoch [7/80] | Train Loss: 0.0105 | Val Loss: 0.1108 | R2: -5.4937 | Pearson: 0.0571
+Epoch [8/80] | Train Loss: 0.0094 | Val Loss: 0.0252 | R2: -0.4719 | Pearson: 0.2729
+Epoch [9/80] | Train Loss: 0.0080 | Val Loss: 0.0879 | R2: -4.1466 | Pearson: 0.0112
+Epoch [10/80] | Train Loss: 0.0066 | Val Loss: 0.0839 | R2: -3.8968 | Pearson: -0.0163
+Epoch [11/80] | Train Loss: 0.0070 | Val Loss: 0.0597 | R2: -2.4870 | Pearson: 0.1516
+Epoch [12/80] | Train Loss: 0.0076 | Val Loss: 0.0808 | R2: -3.7200 | Pearson: 0.0156
+Epoch [13/80] | Train Loss: 0.0049 | Val Loss: 0.0428 | R2: -1.5055 | Pearson: -0.0692
+Epoch [14/80] | Train Loss: 0.0043 | Val Loss: 0.0371 | R2: -1.1803 | Pearson: 0.2849
+Epoch [15/80] | Train Loss: 0.0036 | Val Loss: 0.0441 | R2: -1.5990 | Pearson: 0.0797
+Epoch [16/80] | Train Loss: 0.0029 | Val Loss: 0.0191 | R2: -0.1184 | Pearson: 0.3218
+Epoch [17/80] | Train Loss: 0.0026 | Val Loss: 0.0323 | R2: -0.8976 | Pearson: 0.2794
+Epoch [18/80] | Train Loss: 0.0023 | Val Loss: 0.0326 | R2: -0.9079 | Pearson: 0.1403
+Epoch [19/80] | Train Loss: 0.0028 | Val Loss: 0.0295 | R2: -0.7360 | Pearson: 0.2687
+Epoch [20/80] | Train Loss: 0.0037 | Val Loss: 0.0420 | R2: -1.4540 | Pearson: 0.1093
+Epoch [21/80] | Train Loss: 0.0054 | Val Loss: 0.0233 | R2: -0.3515 | Pearson: 0.0985
+Epoch [22/80] | Train Loss: 0.0035 | Val Loss: 0.0343 | R2: -1.0137 | Pearson: 0.0723
+Epoch [23/80] | Train Loss: 0.0037 | Val Loss: 0.0380 | R2: -1.2307 | Pearson: 0.2013
+Epoch [24/80] | Train Loss: 0.0022 | Val Loss: 0.0496 | R2: -1.9154 | Pearson: 0.3746
+Epoch [25/80] | Train Loss: 0.0021 | Val Loss: 0.0321 | R2: -0.8749 | Pearson: 0.1905
+Epoch [26/80] | Train Loss: 0.0024 | Val Loss: 0.0231 | R2: -0.3588 | Pearson: 0.1914
+Epoch [27/80] | Train Loss: 0.0015 | Val Loss: 0.0403 | R2: -1.3632 | Pearson: 0.2694
+Epoch [28/80] | Train Loss: 0.0016 | Val Loss: 0.0227 | R2: -0.3199 | Pearson: 0.2857
+Epoch [29/80] | Train Loss: 0.0018 | Val Loss: 0.0762 | R2: -3.4684 | Pearson: 0.1396
+Epoch [30/80] | Train Loss: 0.0016 | Val Loss: 0.0487 | R2: -1.8534 | Pearson: 0.3842
+Epoch [31/80] | Train Loss: 0.0014 | Val Loss: 0.0256 | R2: -0.4893 | Pearson: 0.1241
+Epoch [32/80] | Train Loss: 0.0015 | Val Loss: 0.0182 | R2: -0.0688 | Pearson: 0.2380
+Epoch [33/80] | Train Loss: 0.0015 | Val Loss: 0.0236 | R2: -0.3866 | Pearson: 0.3747
+Epoch [34/80] | Train Loss: 0.0020 | Val Loss: 0.0228 | R2: -0.3337 | Pearson: 0.2483
+Epoch [35/80] | Train Loss: 0.0011 | Val Loss: 0.0264 | R2: -0.5478 | Pearson: 0.4586
+Epoch [36/80] | Train Loss: 0.0013 | Val Loss: 0.0227 | R2: -0.3177 | Pearson: 0.2707
+Epoch [37/80] | Train Loss: 0.0015 | Val Loss: 0.0303 | R2: -0.7840 | Pearson: 0.3951
+Epoch [38/80] | Train Loss: 0.0017 | Val Loss: 0.0696 | R2: -3.0790 | Pearson: 0.3123
+Epoch [39/80] | Train Loss: 0.0016 | Val Loss: 0.0134 | R2: 0.2072 | Pearson: 0.5177
+Epoch [40/80] | Train Loss: 0.0014 | Val Loss: 0.0157 | R2: 0.0828 | Pearson: 0.4110
+Epoch [41/80] | Train Loss: 0.0012 | Val Loss: 0.0130 | R2: 0.2337 | Pearson: 0.5402
+Epoch [42/80] | Train Loss: 0.0008 | Val Loss: 0.0301 | R2: -0.7667 | Pearson: 0.3867
+Epoch [43/80] | Train Loss: 0.0011 | Val Loss: 0.0160 | R2: 0.0685 | Pearson: 0.3711
+Epoch [44/80] | Train Loss: 0.0016 | Val Loss: 0.0157 | R2: 0.0847 | Pearson: 0.4339
+Epoch [45/80] | Train Loss: 0.0012 | Val Loss: 0.0190 | R2: -0.1063 | Pearson: 0.4143
+Epoch [46/80] | Train Loss: 0.0011 | Val Loss: 0.0177 | R2: -0.0363 | Pearson: 0.4996
+Epoch [47/80] | Train Loss: 0.0009 | Val Loss: 0.0155 | R2: 0.0893 | Pearson: 0.4080
+Epoch [48/80] | Train Loss: 0.0013 | Val Loss: 0.0184 | R2: -0.0846 | Pearson: 0.4413
+Epoch [49/80] | Train Loss: 0.0017 | Val Loss: 0.0137 | R2: 0.1915 | Pearson: 0.4873
+Epoch [50/80] | Train Loss: 0.0011 | Val Loss: 0.0161 | R2: 0.0653 | Pearson: 0.4488
+Epoch [51/80] | Train Loss: 0.0011 | Val Loss: 0.0198 | R2: -0.1680 | Pearson: 0.3212
+Epoch [52/80] | Train Loss: 0.0011 | Val Loss: 0.0150 | R2: 0.1115 | Pearson: 0.4407
+Epoch [53/80] | Train Loss: 0.0011 | Val Loss: 0.0140 | R2: 0.1761 | Pearson: 0.5037
+Epoch [54/80] | Train Loss: 0.0016 | Val Loss: 0.0162 | R2: 0.0425 | Pearson: 0.4004
+Epoch [55/80] | Train Loss: 0.0010 | Val Loss: 0.0153 | R2: 0.1048 | Pearson: 0.4925
+Epoch [56/80] | Train Loss: 0.0011 | Val Loss: 0.0317 | R2: -0.8503 | Pearson: 0.4479
+Epoch [57/80] | Train Loss: 0.0013 | Val Loss: 0.0153 | R2: 0.1047 | Pearson: 0.4498
+Epoch [58/80] | Train Loss: 0.0011 | Val Loss: 0.0122 | R2: 0.2880 | Pearson: 0.5472
+Epoch [59/80] | Train Loss: 0.0008 | Val Loss: 0.0121 | R2: 0.2886 | Pearson: 0.5511
+Epoch [60/80] | Train Loss: 0.0010 | Val Loss: 0.0130 | R2: 0.2407 | Pearson: 0.5517
+Epoch [61/80] | Train Loss: 0.0008 | Val Loss: 0.0132 | R2: 0.2292 | Pearson: 0.5186
+Epoch [62/80] | Train Loss: 0.0009 | Val Loss: 0.0139 | R2: 0.1908 | Pearson: 0.4584
+Epoch [63/80] | Train Loss: 0.0008 | Val Loss: 0.0115 | R2: 0.3207 | Pearson: 0.5754
+Epoch [64/80] | Train Loss: 0.0007 | Val Loss: 0.0127 | R2: 0.2529 | Pearson: 0.5627
+Epoch [65/80] | Train Loss: 0.0012 | Val Loss: 0.0134 | R2: 0.2195 | Pearson: 0.5656
+Epoch [66/80] | Train Loss: 0.0011 | Val Loss: 0.0116 | R2: 0.3307 | Pearson: 0.5847
+Epoch [67/80] | Train Loss: 0.0007 | Val Loss: 0.0112 | R2: 0.3486 | Pearson: 0.5947
+Epoch [68/80] | Train Loss: 0.0008 | Val Loss: 0.0113 | R2: 0.3337 | Pearson: 0.5838
+Epoch [69/80] | Train Loss: 0.0006 | Val Loss: 0.0113 | R2: 0.3427 | Pearson: 0.5921
+Epoch [70/80] | Train Loss: 0.0006 | Val Loss: 0.0114 | R2: 0.3330 | Pearson: 0.5858
+Epoch [71/80] | Train Loss: 0.0007 | Val Loss: 0.0115 | R2: 0.3296 | Pearson: 0.5905
+Epoch [72/80] | Train Loss: 0.0007 | Val Loss: 0.0112 | R2: 0.3432 | Pearson: 0.5931
+Epoch [73/80] | Train Loss: 0.0006 | Val Loss: 0.0112 | R2: 0.3437 | Pearson: 0.5908
+Epoch [74/80] | Train Loss: 0.0006 | Val Loss: 0.0111 | R2: 0.3472 | Pearson: 0.5978
+Traceback (most recent call last):
+  File "train.py", line 132, in <module>
+  File "train.py", line 54, in train_5_fold
+    wandb.log({
+  File "train.py", line 94, in train_one_epoch
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 274, in _forward_impl
+    x = self.layer2(x)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\container.py", line 219, in forward
+    input = module(input)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 154, in forward
+    out = self.conv3(out)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\conv.py", line 458, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\conv.py", line 454, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt

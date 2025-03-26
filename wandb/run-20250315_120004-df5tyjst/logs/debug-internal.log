@@ -1,0 +1,18 @@
+{"time":"2025-03-15T12:00:04.7251831+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250315_120004-df5tyjst\\logs\\debug-core.log"}
+{"time":"2025-03-15T12:00:04.8350387+09:00","level":"INFO","msg":"created new stream","id":"df5tyjst"}
+{"time":"2025-03-15T12:00:04.8350387+09:00","level":"INFO","msg":"stream: started","id":"df5tyjst"}
+{"time":"2025-03-15T12:00:04.8350387+09:00","level":"INFO","msg":"sender: started","stream_id":"df5tyjst"}
+{"time":"2025-03-15T12:00:04.8350387+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"df5tyjst"}
+{"time":"2025-03-15T12:00:04.8350387+09:00","level":"INFO","msg":"handler: started","stream_id":"df5tyjst"}
+{"time":"2025-03-15T12:00:05.1348381+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-15T12:05:40.9088963+09:00","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/maadds/bmd_train/df5tyjst/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2025-03-15T13:59:31.1818541+09:00","level":"INFO","msg":"api: retrying HTTP error","status":500,"url":"https://api.wandb.ai/files/maadds/bmd_train/df5tyjst/file_stream","body":"{\"error\":\"context deadline exceeded\"}"}
+{"time":"2025-03-15T15:21:47.6358359+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-15T15:21:47.6369014+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-15T15:21:48.6509391+09:00","level":"INFO","msg":"handler: operation stats","stats":{"operations":[{"desc":"uploading config.yaml","runtime_seconds":0.1566585,"progress":"815B/815B"}],"total_operations":1}}
+{"time":"2025-03-15T15:21:48.8130569+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-15T15:21:50.0539082+09:00","level":"INFO","msg":"stream: closing","id":"df5tyjst"}
+{"time":"2025-03-15T15:21:50.0539082+09:00","level":"INFO","msg":"handler: closed","stream_id":"df5tyjst"}
+{"time":"2025-03-15T15:21:50.0539082+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"df5tyjst"}
+{"time":"2025-03-15T15:21:50.0539082+09:00","level":"INFO","msg":"sender: closed","stream_id":"df5tyjst"}
+{"time":"2025-03-15T15:21:50.0539082+09:00","level":"INFO","msg":"stream: closed","id":"df5tyjst"}

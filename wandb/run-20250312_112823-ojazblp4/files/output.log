@@ -1,0 +1,62 @@
+Fold 1 | Epoch [1/150] | Train Loss: 0.0215 | Val Loss: 0.0226 | R2: -0.3214 | Pearson: 0.0902
+Fold 1 | Epoch [2/150] | Train Loss: 0.0187 | Val Loss: 0.0177 | R2: -0.0391 | Pearson: 0.3037
+Fold 1 | Epoch [3/150] | Train Loss: 0.0174 | Val Loss: 0.0156 | R2: 0.0860 | Pearson: 0.3227
+Fold 1 | Epoch [4/150] | Train Loss: 0.0165 | Val Loss: 0.0157 | R2: 0.0788 | Pearson: 0.3020
+Fold 1 | Epoch [5/150] | Train Loss: 0.0146 | Val Loss: 0.0175 | R2: -0.0222 | Pearson: 0.3248
+Fold 1 | Epoch [6/150] | Train Loss: 0.0133 | Val Loss: 0.0188 | R2: -0.1010 | Pearson: 0.3415
+Fold 1 | Epoch [7/150] | Train Loss: 0.0114 | Val Loss: 0.0181 | R2: -0.0575 | Pearson: 0.3534
+Fold 1 | Epoch [8/150] | Train Loss: 0.0094 | Val Loss: 0.0199 | R2: -0.1654 | Pearson: 0.3149
+Fold 1 | Epoch [9/150] | Train Loss: 0.0072 | Val Loss: 0.0166 | R2: 0.0262 | Pearson: 0.3669
+Fold 1 | Epoch [10/150] | Train Loss: 0.0052 | Val Loss: 0.0208 | R2: -0.2167 | Pearson: 0.3421
+Fold 1 | Epoch [11/150] | Train Loss: 0.0033 | Val Loss: 0.0311 | R2: -0.8201 | Pearson: 0.3030
+Fold 1 | Epoch [12/150] | Train Loss: 0.0025 | Val Loss: 0.0266 | R2: -0.5559 | Pearson: 0.3358
+Fold 1 | Epoch [13/150] | Train Loss: 0.0021 | Val Loss: 0.0260 | R2: -0.5223 | Pearson: 0.2764
+Fold 1 | Epoch [14/150] | Train Loss: 0.0018 | Val Loss: 0.0270 | R2: -0.5816 | Pearson: 0.3157
+Fold 1 | Epoch [15/150] | Train Loss: 0.0018 | Val Loss: 0.0216 | R2: -0.2648 | Pearson: 0.3454
+Fold 1 | Epoch [16/150] | Train Loss: 0.0015 | Val Loss: 0.0283 | R2: -0.6578 | Pearson: 0.2998
+Fold 1 | Epoch [17/150] | Train Loss: 0.0013 | Val Loss: 0.0220 | R2: -0.2912 | Pearson: 0.3358
+Fold 1 | Epoch [18/150] | Train Loss: 0.0013 | Val Loss: 0.0226 | R2: -0.3225 | Pearson: 0.2933
+Fold 1 | Epoch [19/150] | Train Loss: 0.0013 | Val Loss: 0.0362 | R2: -1.1221 | Pearson: 0.2865
+Fold 1 | Epoch [20/150] | Train Loss: 0.0012 | Val Loss: 0.0223 | R2: -0.3087 | Pearson: 0.3433
+Fold 1 | Epoch [21/150] | Train Loss: 0.0011 | Val Loss: 0.0204 | R2: -0.1964 | Pearson: 0.3362
+Fold 1 | Epoch [22/150] | Train Loss: 0.0010 | Val Loss: 0.0260 | R2: -0.5240 | Pearson: 0.3289
+Fold 1 | Epoch [23/150] | Train Loss: 0.0010 | Val Loss: 0.0238 | R2: -0.3926 | Pearson: 0.3500
+Fold 1 | Epoch [24/150] | Train Loss: 0.0009 | Val Loss: 0.0294 | R2: -0.7207 | Pearson: 0.3299
+Fold 1 | Epoch [25/150] | Train Loss: 0.0009 | Val Loss: 0.0234 | R2: -0.3696 | Pearson: 0.3339
+Fold 1 | Epoch [26/150] | Train Loss: 0.0009 | Val Loss: 0.0211 | R2: -0.2347 | Pearson: 0.3588
+Fold 1 | Epoch [27/150] | Train Loss: 0.0008 | Val Loss: 0.0260 | R2: -0.5212 | Pearson: 0.3602
+Fold 1 | Epoch [28/150] | Train Loss: 0.0007 | Val Loss: 0.0212 | R2: -0.2398 | Pearson: 0.3581
+Fold 1 | Epoch [29/150] | Train Loss: 0.0008 | Val Loss: 0.0203 | R2: -0.1873 | Pearson: 0.3590
+Fold 1 | Epoch [30/150] | Train Loss: 0.0007 | Val Loss: 0.0191 | R2: -0.1198 | Pearson: 0.3494
+Fold 1 | Epoch [31/150] | Train Loss: 0.0007 | Val Loss: 0.0238 | R2: -0.3933 | Pearson: 0.3580
+Fold 1 | Epoch [32/150] | Train Loss: 0.0006 | Val Loss: 0.0235 | R2: -0.3792 | Pearson: 0.3391
+Fold 1 | Epoch [33/150] | Train Loss: 0.0007 | Val Loss: 0.0210 | R2: -0.2317 | Pearson: 0.3734
+Fold 1 | Epoch [34/150] | Train Loss: 0.0006 | Val Loss: 0.0216 | R2: -0.2648 | Pearson: 0.3442
+Fold 1 | Epoch [35/150] | Train Loss: 0.0006 | Val Loss: 0.0191 | R2: -0.1159 | Pearson: 0.3644
+Process Process-1:
+Traceback (most recent call last):
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 315, in _bootstrap
+    self.run()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\multiprocessing\process.py", line 108, in run
+    self._target(*self._args, **self._kwargs)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 46, in train_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\train.py", line 70, in train_one_epoch
+    for images, labels, _ in train_loader:
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 214, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 187, in process_image
+    A.Resize(224, 224),  # 모든 이미지를 224x224 크기로 변환
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\albumentations\core\validation.py", line 45, in custom_init
+    original_init(self, **validated_kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\albumentations\augmentations\geometric\resize.py", line 342, in __init__
+    super().__init__(p=p, always_apply=always_apply)
+KeyboardInterrupt

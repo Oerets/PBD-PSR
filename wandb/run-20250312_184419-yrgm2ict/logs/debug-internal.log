@@ -1,0 +1,15 @@
+{"time":"2025-03-12T18:44:19.421944+09:00","level":"INFO","msg":"stream: starting","core version":"0.19.2","symlink path":"C:\\Users\\hyunoh\\Documents\\Codes\\BMD_code\\wandb\\run-20250312_184419-yrgm2ict\\logs\\debug-core.log"}
+{"time":"2025-03-12T18:44:19.5288937+09:00","level":"INFO","msg":"created new stream","id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:19.5294344+09:00","level":"INFO","msg":"stream: started","id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:19.5294344+09:00","level":"INFO","msg":"writer: Do: started","stream_id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:19.5294344+09:00","level":"INFO","msg":"sender: started","stream_id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:19.5294344+09:00","level":"INFO","msg":"handler: started","stream_id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:19.8373427+09:00","level":"INFO","msg":"Starting system monitor"}
+{"time":"2025-03-12T18:44:19.9643512+09:00","level":"INFO","msg":"stream: closing","id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:19.9643512+09:00","level":"INFO","msg":"Stopping system monitor"}
+{"time":"2025-03-12T18:44:19.9643512+09:00","level":"INFO","msg":"Stopped system monitor"}
+{"time":"2025-03-12T18:44:21.111427+09:00","level":"INFO","msg":"fileTransfer: Close: file transfer manager closed"}
+{"time":"2025-03-12T18:44:21.3564523+09:00","level":"INFO","msg":"handler: closed","stream_id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:21.3564523+09:00","level":"INFO","msg":"sender: closed","stream_id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:21.3564523+09:00","level":"INFO","msg":"writer: Close: closed","stream_id":"yrgm2ict"}
+{"time":"2025-03-12T18:44:21.3564523+09:00","level":"INFO","msg":"stream: closed","id":"yrgm2ict"}

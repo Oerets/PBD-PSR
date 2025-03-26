@@ -1,0 +1,36 @@
+Traceback (most recent call last):
+  File "train.py", line 133, in <module>
+    setup_and_train(train_dataset, val_dataset, test_dataset, batch_size=4, epochs=80, learning_rate=0.00005, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 117, in setup_and_train
+    model = train_model(train_loader, val_loader, test_loader, model, optimizer, criterion, scheduler, device, epochs, model_name="model")
+  File "train.py", line 30, in train_model
+    outputs = model(images)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 285, in forward
+    return self._forward_impl(x)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 275, in _forward_impl
+    x = self.layer3(x)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\container.py", line 219, in forward
+    input = module(input)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torchvision\models\resnet.py", line 154, in forward
+    out = self.conv3(out)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1553, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\module.py", line 1562, in _call_impl
+    return forward_call(*args, **kwargs)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\conv.py", line 458, in forward
+    return self._conv_forward(input, self.weight, self.bias)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\nn\modules\conv.py", line 454, in _conv_forward
+    return F.conv2d(input, weight, bias, self.stride,
+KeyboardInterrupt

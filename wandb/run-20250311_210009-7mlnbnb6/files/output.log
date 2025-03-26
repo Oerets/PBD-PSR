@@ -1,0 +1,11 @@
+Epoch [1/80] | Train Loss: 0.0332 | Val Loss: 0.2237 | R2: -12.1487 | Pearson: -0.1390
+Epoch [2/80] | Train Loss: 0.0172 | Val Loss: 0.1250 | R2: -6.3425 | Pearson: 0.1106
+Epoch [3/80] | Train Loss: 0.0167 | Val Loss: 0.1267 | R2: -6.4159 | Pearson: 0.0261
+Traceback (most recent call last):
+  File "train.py", line 128, in <module>
+    train_5_fold(dataset, batch_size=32, epochs=80, learning_rate=0.00005, optimizer_type='AdamW', scheduler_type='CosineAnnealingLR', device='cuda')
+  File "train.py", line 50, in train_5_fold
+    train_loss = train_one_epoch(model, train_loader, optimizer, criterion, device)
+  File "train.py", line 96, in train_one_epoch
+    total_loss += loss.item()
+KeyboardInterrupt

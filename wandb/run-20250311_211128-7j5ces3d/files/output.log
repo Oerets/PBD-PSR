@@ -1,0 +1,63 @@
+Epoch [1/80] | Train Loss: 0.0424 | Val Loss: 0.0985 | R2: -4.7974 | Pearson: 0.1307
+Epoch [2/80] | Train Loss: 0.0206 | Val Loss: 0.0713 | R2: -3.1830 | Pearson: 0.0048
+Epoch [3/80] | Train Loss: 0.0188 | Val Loss: 0.0696 | R2: -3.0527 | Pearson: 0.0674
+Epoch [4/80] | Train Loss: 0.0181 | Val Loss: 0.0816 | R2: -3.7769 | Pearson: 0.0185
+Epoch [5/80] | Train Loss: 0.0163 | Val Loss: 0.0508 | R2: -1.9697 | Pearson: 0.0572
+Epoch [6/80] | Train Loss: 0.0143 | Val Loss: 0.0857 | R2: -4.0353 | Pearson: 0.1015
+Epoch [7/80] | Train Loss: 0.0127 | Val Loss: 0.0355 | R2: -1.0848 | Pearson: 0.2104
+Epoch [8/80] | Train Loss: 0.0119 | Val Loss: 0.0595 | R2: -2.4834 | Pearson: 0.1695
+Epoch [9/80] | Train Loss: 0.0103 | Val Loss: 0.0180 | R2: -0.0563 | Pearson: 0.1805
+Epoch [10/80] | Train Loss: 0.0092 | Val Loss: 0.0592 | R2: -2.4904 | Pearson: 0.1575
+Epoch [11/80] | Train Loss: 0.0074 | Val Loss: 0.0451 | R2: -1.6611 | Pearson: 0.1718
+Epoch [12/80] | Train Loss: 0.0069 | Val Loss: 0.0272 | R2: -0.5970 | Pearson: 0.3029
+Epoch [13/80] | Train Loss: 0.0065 | Val Loss: 0.0229 | R2: -0.3374 | Pearson: 0.1495
+Epoch [14/80] | Train Loss: 0.0061 | Val Loss: 0.0517 | R2: -2.0258 | Pearson: 0.1672
+Epoch [15/80] | Train Loss: 0.0059 | Val Loss: 0.0274 | R2: -0.5920 | Pearson: 0.2819
+Epoch [16/80] | Train Loss: 0.0058 | Val Loss: 0.0188 | R2: -0.1004 | Pearson: 0.1575
+Epoch [17/80] | Train Loss: 0.0058 | Val Loss: 0.0245 | R2: -0.4391 | Pearson: 0.2879
+Epoch [18/80] | Train Loss: 0.0061 | Val Loss: 0.0169 | R2: 0.0168 | Pearson: 0.2209
+Epoch [19/80] | Train Loss: 0.0051 | Val Loss: 0.0380 | R2: -1.2270 | Pearson: 0.0313
+Epoch [20/80] | Train Loss: 0.0046 | Val Loss: 0.0475 | R2: -1.7626 | Pearson: 0.2863
+Epoch [21/80] | Train Loss: 0.0044 | Val Loss: 0.0341 | R2: -0.9979 | Pearson: 0.2044
+Epoch [22/80] | Train Loss: 0.0047 | Val Loss: 0.0161 | R2: 0.0595 | Pearson: 0.3515
+Epoch [23/80] | Train Loss: 0.0047 | Val Loss: 0.0135 | R2: 0.2117 | Pearson: 0.5525
+Epoch [24/80] | Train Loss: 0.0049 | Val Loss: 0.0109 | R2: 0.3586 | Pearson: 0.5990
+Epoch [25/80] | Train Loss: 0.0043 | Val Loss: 0.0249 | R2: -0.4609 | Pearson: 0.3512
+Epoch [26/80] | Train Loss: 0.0043 | Val Loss: 0.0152 | R2: 0.1119 | Pearson: 0.4658
+Epoch [27/80] | Train Loss: 0.0037 | Val Loss: 0.0177 | R2: -0.0379 | Pearson: 0.5858
+Epoch [28/80] | Train Loss: 0.0037 | Val Loss: 0.0221 | R2: -0.2910 | Pearson: 0.3807
+Epoch [29/80] | Train Loss: 0.0037 | Val Loss: 0.0145 | R2: 0.1509 | Pearson: 0.4035
+Epoch [30/80] | Train Loss: 0.0038 | Val Loss: 0.0170 | R2: 0.0001 | Pearson: 0.4201
+Epoch [31/80] | Train Loss: 0.0040 | Val Loss: 0.0205 | R2: -0.1959 | Pearson: 0.2720
+Epoch [32/80] | Train Loss: 0.0036 | Val Loss: 0.0392 | R2: -1.3027 | Pearson: 0.1915
+Epoch [33/80] | Train Loss: 0.0032 | Val Loss: 0.0175 | R2: -0.0197 | Pearson: 0.5222
+Epoch [34/80] | Train Loss: 0.0037 | Val Loss: 0.0372 | R2: -1.1875 | Pearson: 0.4606
+Epoch [35/80] | Train Loss: 0.0034 | Val Loss: 0.0148 | R2: 0.1289 | Pearson: 0.4641
+Epoch [36/80] | Train Loss: 0.0034 | Val Loss: 0.0134 | R2: 0.2127 | Pearson: 0.4972
+Epoch [37/80] | Train Loss: 0.0035 | Val Loss: 0.0306 | R2: -0.7932 | Pearson: 0.2571
+Epoch [38/80] | Train Loss: 0.0035 | Val Loss: 0.0335 | R2: -0.9636 | Pearson: 0.1882
+Epoch [39/80] | Train Loss: 0.0034 | Val Loss: 0.0123 | R2: 0.2766 | Pearson: 0.5499
+Epoch [40/80] | Train Loss: 0.0030 | Val Loss: 0.0162 | R2: 0.0410 | Pearson: 0.3306
+Traceback (most recent call last):
+  File "train.py", line 136, in <module>
+  File "train.py", line 58, in train_5_fold
+    wandb.log({
+  File "train.py", line 94, in train_one_epoch
+    outputs = model(images)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\dataloader.py", line 673, in _next_data
+    data = self._dataset_fetcher.fetch(index)  # may raise StopIteration
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in fetch
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\torch\utils\data\_utils\fetch.py", line 52, in <listcomp>
+    data = [self.dataset[idx] for idx in possibly_batched_index]
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 214, in __getitem__
+    image = self.process_image(img_path)
+  File "C:\Users\hyunoh\Documents\Codes\BMD_code\regression_function_classes.py", line 176, in process_image
+    image = np.load(img_path)
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\numpy\lib\npyio.py", line 432, in load
+    return format.read_array(fid, allow_pickle=allow_pickle,
+  File "C:\Users\hyunoh\anaconda3\envs\spine\lib\site-packages\numpy\lib\format.py", line 802, in read_array
+    array = numpy.fromfile(fp, dtype=dtype, count=count)
+KeyboardInterrupt
