@@ -1,6 +1,5 @@
 # Base image 선택
-FROM python:3.10
-
+FROM ultralytics/ultralytics
 RUN apt-get update && apt-get install -y libgl1
 
 # 작업 디렉터리 생성

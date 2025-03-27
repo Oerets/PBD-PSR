@@ -74,7 +74,7 @@ class BMDApp(QMainWindow):
         self.detection_finished = False
         self.initUI()
         self.load_settings()  # Load settings on application start.
-        self.url = "http://localhost:5000/analyze"
+        self.url = "http://localhost:8080/analyze"
 
     def initUI(self):
         central_widget = QWidget()
@@ -83,7 +83,7 @@ class BMDApp(QMainWindow):
         # Create main horizontal layout
         main_layout = QHBoxLayout()
 
-        #Image 디스플레이 관련 항목들 (후반부에 관련 함수도 주석처리 되어있음음)
+        #Image 디스플레이 관련 항목들 (후반부에 관련 함수도 주석처리 되어있음)
         '''# Left layout for image display
         self.image_label = QLabel("No Image")
         self.image_label.setFixedSize(300, 400)  # Define a fixed size for the image display
