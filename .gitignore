@@ -1,19 +1,32 @@
+# === Python & Machine Learning 관련 ===
 *.pt
 *.pth
 *.xlsx
-data/
-weights/Hip/*.pth
-weights/Vertebra
-weigts/*.pt
-weigts/*.pth
-wandb
-dumps
+
+# === 결과 및 로그 파일 ===
 result_save.txt
+result_save/
+dumps/
+wandb/
+
+# === 모델 가중치 디렉토리 ===
+weights/Hip/*.pth
+weights/Vertebra/
+weights/*.pt
+weights/*.pth
+
+# === 데이터 ===
+data/
+
+# === 실행 결과 디렉토리 (YOLO 등) ===
 runs/detect/
 runs/obb/
-result_save/
-Anaconda3-2021.11-Linux-x86_64.sh
-client/build
-client/dist
+
+# === 클라이언트 빌드 파일 ===
+client/build/
+client/dist/
 client/main.spec
 client/save_settings.txt
+
+# === 기타 설치파일 ===
+Anaconda3-2021.11-Linux-x86_64.sh
