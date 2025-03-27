@@ -2,6 +2,8 @@
 *.pth
 *.xlsx
 data/
+weights/Hip
+weights/Vertebra
 weigts/*.pt
 weigts/*.pth
 wandb
