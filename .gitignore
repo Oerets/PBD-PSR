@@ -2,7 +2,7 @@
 *.pth
 *.xlsx
 data/
-weights/Hip
+weights/Hip/*.pth
 weights/Vertebra
 weigts/*.pt
 weigts/*.pth
